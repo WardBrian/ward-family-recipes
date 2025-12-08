@@ -1,0 +1,1479 @@
+\documentclass{article}
+
+% modified from
+% https://tex.stackexchange.com/a/366262
+
+
+\usepackage{kpfonts}
+\usepackage{xfrac}
+\usepackage{fancyhdr}
+\usepackage{multicol}
+\usepackage[%
+    %letterpaper,
+    papersize={5.5in,8.5in},
+    margin=0.5in,
+    top=0.75in,
+    bottom=0.75in,
+    twoside
+    ]{geometry}
+
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage[dvipsnames]{xcolor}
+\hypersetup{ % setup coloring of links
+	colorlinks,
+	linkcolor=black,
+	urlcolor={blue!80!black},
+	pdftitle={Ward Family Recipes}
+}
+
+\usepackage{array}
+\usepackage{tikz}
+
+\usepackage{makeidx}
+\makeindex
+
+\raggedcolumns
+\setlength{\multicolsep}{0pt}
+\setlength{\columnseprule}{1pt}
+
+\makeatletter
+
+\newif\if@mainmatter \@mainmattertrue
+
+%% Borrowed from book.cls
+\newcommand\frontmatter{%
+    \cleardoublepage
+  \@mainmatterfalse
+  \pagenumbering{roman}}
+\newcommand\mainmatter{%
+    \cleardoublepage
+  \@mainmattertrue
+  \pagenumbering{arabic}}
+\makeatother
+
+% Your "recipes.sty" package starts here:
+%% Thanks to alephzero for the excellent start:
+
+
+\newcommand{\circled}[1]{%
+	\tikz \node[shape=circle,draw,inner sep=1pt, minimum width=10pt] {\textsc{\tiny #1}};
+}
+
+\newcommand{\category}[1]{%
+	\newpage\addcontentsline{toc}{section}{#1}%
+}
+
+\newcommand{\recipe}[2][]{%
+    \newpage
+    \lhead{}%
+    \chead{}%
+    \rhead{}%
+    \lfoot{}%
+    \rfoot{}%
+    \section*{#2}\addcontentsline{toc}{subsection}{#2}%
+    \if###1##%
+    \else
+        \begin{center}
+			\parbox{0.75\linewidth}{\raggedright\itshape#1}%
+		\end{center}
+    \fi
+}
+\newcommand{\serves}[2][Serves]{%
+    \chead{#1 #2}}
+
+\newcommand{\diet}[1]{\rhead{#1}}
+\newcommand{\gf}{\circled{GF}}
+\newcommand{\df}{\circled{DF}}
+\newcommand{\ve}{\circled{VE}}
+\newcommand{\vg}{\circled{VG}}
+\newcommand{\almostve}{\circled{V-}}
+
+
+%% Optional arguments for alternate names for these:
+\newcommand{\preptime}[2][Prep time]{%
+    \lfoot{#1: #2}%
+}
+\newcommand{\cooktime}[2][Cook time]{%
+    \rfoot{#1: #2}%
+}
+
+\newcommand{\half}{\sfrac{1}{2}}
+\newcommand{\quarter}{\sfrac{1}{4}}
+\newcommand{\threequarters}{\sfrac{3}{4}}
+\newcommand{\third}{\sfrac{1}{3}}
+
+\newcommand{\temp}[1]{%
+    $#1^\circ$F}
+%% Optional argument is the width of the graphic, default = 1in
+\newcommand{\showit}[3][1in]{%
+    \begin{center}
+        \bigskip
+            \includegraphics[width=#1]{#2}%
+            \par
+            \medskip
+            \emph{#3}
+            \par
+        \end{center}%
+    }
+
+%% Optional argument for a  heading within the ingredients section
+\newcommand{\ingredients}[1][]{%
+    \if###1##%
+        {\color{OliveGreen}\Large\textbf{Ingredients}}%
+    \else
+        \emph{#1}%
+    \fi
+}
+
+%% Use \obeylines to minimize markup
+\newenvironment{ingreds}{%
+    \parindent0pt
+    \noindent
+    \ingredients
+    \par
+    \smallskip
+    \begin{multicols}{2}
+    \leftskip1em
+    \rightskip0pt plus 3em
+    \parskip=0.25em
+    \obeylines
+    \everypar={\hangindent2em}
+}{%
+    \end{multicols}%
+    \medskip
+}
+
+\newcounter{stepnum}
+
+%% Optional argument for an italicized pre-step
+%% Also use obeylines to minimize markup here as well
+\newenvironment{method}[1][]{%
+    \setcounter{stepnum}{0}
+    \noindent
+    {\color{MidnightBlue}\Large\textbf{Instructions}}%
+    \par
+    \smallskip
+    \if###1##%
+    \else
+        \noindent
+        \emph{#1}
+        \par
+    \fi
+    \begingroup
+    \parindent0pt
+    \parskip0.25em
+        \leftskip2em
+    \everypar={\llap{\stepcounter{stepnum}\hbox to2em{\thestepnum.\hfill}}}
+}{%
+    \par
+    \endgroup}
+
+\newenvironment{method*}[2][]{%
+   	\setcounter{stepnum}{0}
+   	\noindent
+   	{\color{MidnightBlue}\Large\textbf{Instructions: #2}}%
+   	\par
+   	\smallskip
+   	\if###1##%
+   	\else
+   	\noindent
+	\emph{#1}
+	\par
+   	\fi
+   	\begingroup
+   	\parindent0pt
+   	\parskip0.25em
+   	\leftskip2em
+   	\everypar={\llap{\stepcounter{stepnum}\hbox to2em{\thestepnum.\hfill}}}
+}{%
+   	\par
+   	\endgroup}
+
+\newenvironment{notes}{%
+    \vfill
+    \noindent
+    {\color{RedOrange}\large\textbf{Notes}}\\
+    \small
+    \parindent0pt
+}{\vspace{0.25in}}
+
+% for printing a physical copy
+% \renewcommand{\href}[2]{#2 {\footnotesize (\protect\url{#1})}}
+
+\pagestyle{fancy}
+% End of "recipes.sty"
+
+\title{\vspace{1in}\huge{\Huge$\mathcal{W}$}ard Family Recipes\vfill}
+\author{Brian Ward}
+\date{\today}
+
+% TODO
+% - all current blanks
+% - enchiladas
+% - thai noodles
+% - cacio e pepe
+% - spinach and artichoke dip sandwich
+% - dumpling sauce
+% - stir fry sauce
+% - Miles' yeasted waffles and buttermilk fried chicken
+% - pork chops
+
+
+% --------------------------------------------------------------------------------
+% DOCUMENT START
+
+\begin{document}
+
+\begin{titlepage}
+    \maketitle
+    \thispagestyle{empty}
+    \newpage
+    \thispagestyle{empty}
+\end{titlepage}
+
+\frontmatter
+
+\tableofcontents
+
+\section*{Symbols}
+\begin{tabular}{c p{0.9\textwidth}}
+	\ve & Vegetarian \\
+	\almostve & ``Almost'' Vegetarian - can be easily adapted by leaving out ingredients or using fake meat products \\
+	\vg & Vegan \\
+	\gf & Gluten Free \\
+	\df & Dairy Free
+\end{tabular}
+
+\newpage
+% while the TOC is an odd number of pages long...
+%\thispagestyle{empty}
+
+\mainmatter
+
+% --------------------------------------------------------------------------
+\category{Breakfast}
+
+
+\recipe[Originally from \href{https://www.foodnetwork.com/recipes/banana-bread-recipe-1969572}{Food Network}.]{Banana Bread}
+\index{Bread!banana}
+\diet{\ve}
+\serves[Makes]{1 loaf}
+\preptime{30 minutes}
+\cooktime[Baking time]{1 hour 10 minutes}
+
+\begin{ingreds}
+	1 cup granulated sugar
+	1 stick unsalted butter, room temperature
+	2 large eggs
+	3 ripe bananas (or frozen and thawed)
+	1 tablespoon milk
+	1 teaspoon ground cinnamon
+	2 cups all-purpose flour
+	1 teaspoon baking powder
+	1 teaspoon baking soda
+	1 teaspoon salt
+	\third{} cup chocolate chips (optional)
+\end{ingreds}
+
+\begin{method}[Preheat oven to \temp{325}. Butter a 9 x 5 x 3 inch loaf pan.]
+	Cream the sugar and butter in a large mixing bowl until light and fluffy. Add the eggs one at a time, beating well after each addition.
+
+	In a small bowl, mash the bananas with a fork. Mix in the milk and cinnamon. In another bowl, mix together the flour, baking powder, baking soda and salt.
+
+	Add the banana mixture to the creamed mixture and stir until combined. Add dry ingredients, mixing just until flour disappears. Add chocolate chips now, if desired, and mix in.
+
+	Pour batter into prepared pan and bake 1 hour to 1 hour 10 minutes, until a toothpick inserted in the center comes out clean.
+
+	Set aside to cool on a rack for 15 minutes. Cool completely before slicing.
+\end{method}
+
+
+\recipe[Kelly's favorite, a Wegmans recipe]{Peanut Butter Banana Smoothie}
+\index{Smoothie!peanut butter}
+\index{Smoothie!banana}
+\diet{\ve\gf}
+\serves{2}
+\preptime{5 minutes}
+
+\begin{ingreds}
+	2 cups vanilla almond or oat milk
+	2 teaspoons black chia seeds
+	2 ripe banana, peeled
+	\third{} cup creamy peanut butter
+	2 tablespoons honey
+	1 cup oats (optional)
+\end{ingreds}
+
+\begin{method}
+	Add ingredients to blender and blend until smooth.
+\end{method}
+
+% --------------------------------------------------------------------------
+\category{Appetizers}
+
+\recipe{Hot Spinach and Artichoke Dip}
+\index{Dip!spinach and artichoke}
+\diet{\ve}
+\serves{8+}
+\preptime{10 minutes}
+\cooktime{35 Minutes}
+\begin{ingreds}
+    1 box (10 oz) frozen chopped spinach, cooked, cooled and squeezed dry
+    1 package (8 oz) cream cheese, softened
+    \threequarters{} cup  Mayonnaise
+    1\half{} cups shredded Monterey Jack cheese, divided
+    1 package Knorr® Vegetable recipe mix
+    1 can (14 oz) artichoke hearts, drained and chopped
+    1 can (8 oz) water chestnuts, drained and chopped
+    2 cloves garlic, finely chopped
+\end{ingreds}
+\begin{method}[Preheat oven to \temp{350}]
+    Combine all ingredients except \half{} cup cheese.
+
+    Spoon into a 2-quart casserole and top with remaining cheese.
+
+    Bake for 35 minutes or until hot.
+\end{method}
+
+\begin{notes}
+    Recommended to serve with pumpernickle bread, perhaps in a bread bowl.
+\end{notes}
+
+\recipe{Buffalo Chicken Dip}
+\index{Dip!buffalo chicken}
+\serves{4}
+\preptime{25 minutes}
+\cooktime{25 Minutes}
+\begin{ingreds}
+	1 large chicken breast
+	1 package (8 oz) cream cheese, softened
+	1 block (8 oz) Monterey Jack, shredded, divided
+	\quarter{} cup Frank's Buffalo Hot Sauce
+	\half{} cup ranch dressing
+\end{ingreds}
+\begin{method}[Preheat oven to \temp{325}]
+	Cook chicken by boiling in salted water for approximately 20 minutes until cooked. Shred chicken.
+
+	Combine cream cheese, hot sauce, ranch dressing, and half of the shredded cheese.
+
+	Add shredded chicken and mix.
+
+	Spoon into a 2-quart casserole and top with remaining cheese.
+
+	Bake for 20-25 minutes or until bubbling.
+\end{method}
+
+
+\recipe{Seven Layer Bean Dip}
+\index{Dip!bean}
+
+% --------------------------------------------------------------------------
+\category{Entrees}
+
+\recipe[A great summer dish, served either cold in the traditional pasta salad manner or warm as a tangy chicken pasta dish]{Chicken Caesar Pasta Salad}
+\index{Pasta!salad}
+\diet{\almostve}
+\serves{4}
+\preptime{5 minutes}
+\cooktime{20 minutes}
+\begin{ingreds}
+    2 boneless chicken breads, sliced into thin strips
+    1 bottle (8 oz) light Caesar salad dressing, divided
+    2 green onions, chopped
+    1 package (10 oz) frozen peas
+    1 cup torn fresh spinach \\(optional)
+    1 lb bowtie pasta
+    Grated parmesan cheese
+\end{ingreds}
+
+\begin{method}
+    Cook pasta to package instructions. Defrost frozen peas for \half{} regular cooking time.
+
+    Saute chicken in \quarter{} package dressing in a large skillet, 4-5 minutes or until almost done.
+
+    Add green onions, peas, and spinach; cook, stirring ocassionally 3-4 minutes until wilted and done.
+
+    Toss with pasta. Top with grated cheese and serve with additional dressing and green onions.
+\end{method}
+
+
+\begin{notes}
+    Works very well with fake chicken strips substituted in.
+
+    For a fully vegetarian version, use Olive Garden Italian Dressing instead of Caesar.
+\end{notes}
+
+
+\recipe{Baked Ziti}
+\index{Pasta!baked ziti}
+\diet{\ve}
+\serves{8}
+\preptime{20 minutes}
+\cooktime{30 minutes}
+
+\begin{ingreds}
+    1 lb ziti or penne noodles
+    1 jar (24 iz) pasta sauce
+    15 oz ricotta cheese
+    8 oz shredded mozzarella cheese, divided
+    \quarter{} cup parsley, chopped (optional)
+    1 egg, lightly beaten
+    1 teaspoon fresh oregano
+    \half{} teaspooon garlic  powder
+    \half{} teaspoon salt
+    \quarter{} teaspoon freshly ground black pepper
+    3 tablespoons freshly grated Parmesan cheese
+\end{ingreds}
+
+\begin{method}[Preheat oven to \temp{375}]
+    Prepare pasta according to package directions.
+
+    In large bowl, stir together hot cooked pasta, pasta sauce, ricotta cheese, 6 oz mozzarella cheese, parsley, egg, oregano, garlic powder, salt and pepper.
+
+    In 13 by 9 baking dish, spoon pasta mixture.  Top with remaining mozarella and sprinkle with Parmesan cheese. Cover with foil that has been sprayed with cooking spray on one side.
+
+    Bake for 30 minutes or until hot and bubbly, removing foil for final 5 minutes.
+\end{method}
+
+
+\begin{notes}
+    You can add up to a half pound ground beef or italian sausage, browned and drained, to the mix before baking.
+\end{notes}
+
+\recipe[A simple bechemel-based mac and cheese, originally by \href{https://basicswithbabish.co/basicsepisodes/macandcheese}{Binging with Babish}.]{Baked Mac and Cheese}
+\index{Pasta!mac and cheese}
+\index{Bechamel}
+\diet{\ve}
+\serves{6}
+\preptime{30 minutes}
+\cooktime[Baking Time]{45 minutes}
+
+\begin{ingreds}
+    1 box (16 oz) dry pasta
+    3 oz cheddar, grated
+    1 oz Parmesan, grated
+    \ingredients[For the sauce]
+    1.5 lbs cheese - see notes for suggestions
+    \half{} cup (1 stick) butter
+    \half{} cup flour
+    4 cups cold whole milk
+    Kosher salt
+    Freshly ground pepper
+    Cayenne pepper (optional)
+    2 tablespoons whole grain or dijon mustard
+\end{ingreds}
+
+\begin{method}[Set oven to \temp{375}]
+    Begin by cooking pasta as directed. While it cooks, begin the sauce.
+
+    In a large saucepan, melt butter over medium heat and cook for 2-3 minutes until it stops spattering - the step before browning. Swirl regularly to avoid burning. Add flour and whisk into a thick paste, cooking for 2-3 minutes until the raw flour smell is replaced with a nutty one.
+
+    Slowly add whole milk, \half{} cup at a time, whisking together completely at each step. Whisk rigoursly over medium-high heat until barely simmering and the consistency of heavy cream (the sauce should readily coat a metal spoon).
+
+    Combine all cheeses (except mozzarella cubes, if selected) in a large heatproof bowl. Pour in bechamel through a fine mesh strainer. Fold until cheese has fully melted. Season with salt, pepper, cayenne (optional), and mustard.
+
+    Place cooked and drained pasta into a cassarole dish and pour sauce over. Stir together. Add cubed mozzarella if applicable and mix. Top with grated cheddar and Parmesan.
+
+    Bake for 45 minutes, rotating once halfway through, until golden brown on top. Let rest for 10 minutes before serving.
+\end{method}
+
+\begin{notes}
+    For cheeses, get approximately \half{} pound of any three of the following: freshly shredded Parmesan, freshly shredded Gruyere, freshly shredded sharp white \textbf{cheddar}, freshly shredded \textbf{Manchego}, freshly shredded Foninta, or cubed low-moisture full-fat \textbf{mozzarella}. Favorites in \textbf{bold}.
+\end{notes}
+
+\recipe{Vegetable Lasagna}
+\index{Pasta!lasagna}
+\diet{\ve}
+\serves{5-6}
+\preptime{15 minutes}
+\cooktime{1 hour}
+\begin{ingreds}
+    2 medium garlic cloves, minced
+    1 container (15-16 oz) whole-milk ricotta cheese
+    2 boxes (10 oz each) of frozen spinach, thawed and liquid \textbf{thoroughly} squeezed out
+    1 cup of Parmesan cheese, grated
+    1 large egg
+    2 cans (14.5 oz each) tomato sauce or jarred marinara sauce
+    1 box (8-9 oz) no-boil lasagna noodles (about 12 noodles)
+    1 pound of mozzarella cheese, sliced \quarter{} inch thick
+    Kosher salt
+    Freshly ground black pepper
+\end{ingreds}
+
+\begin{method}[Preheat oven to \temp{350}]
+    Mix together garlic, ricotta, spinach, egg, and half the Parmesan in a bowl until smooth. Season with salt and pepper.
+
+    Spread one fifth of the tomato sauce in the bottom of the baking dish (13 by 9 recommended).
+
+    Overlap a quarter quarter of the noodles in a layer on top of the sauce
+
+    Spread one fifth of the tomato sauce on top of the noodles
+
+    Dollop one third of the ricotta mixture in a few spots over the dish and flatten the dollops - the ricotta will spread out more as it heats. Lay a quarter of the mozzarella on top.
+
+    Repeat the process by laying a quarter of noodles in the opposite direction, top with a fifth of tomato sauce, a third of ricotta mixture, and a quarter of mozzarella. Repeat once more: a quarter of the noodles in the opposite direction, a fifth of the tomato sauce, the remaining ricotta filling, and a quarter of the mozzarella.
+
+    Cover with the last quarter of the noodles, top with the remaining sauce and last pieces of mozzarella. Sprinkle reserved Parmesan cheese.
+
+    Cover with aluminum foil and bake until bubbly around edges, about 35 minutes.
+
+    Remove foil and bake for another 15 minutes, until top is bubbly and light golden-brown. Let lasagna rest for 10-15 minutes before serving.
+\end{method}
+
+\begin{notes}
+    If you cannot find no-boil noodles, simply par boil normal noodles. This may lead to a wetter final dish.
+\end{notes}
+
+\recipe{``Classic'' Alfredo Sauce}
+\index{Pasta!alfredo}
+\serves[Makes]{2 cups}
+\cooktime{15 minutes}
+\begin{ingreds}
+    8 slices bacon
+    1 cup half and half
+    \quarter{} cup (\half{} stick) butter
+    \quarter{} teaspoon ground nutmeg
+    1 cup grated Parmesan cheese
+\end{ingreds}
+\begin{method}
+    Cook bacon until crispy. Pat dry and crumble; set aside.
+
+    Combine butter, half and half, and nutmeg in a 1-quart saucepan. Cook over medium heat, stirring constantly, 2-3 minutes or until butter is melted.
+
+    Add bacon to pot and remove from heat. Stir in cheese.
+
+    Serve with 1 lb of cooked fettucini, linguine, or other pasta.
+\end{method}
+
+\recipe[Originally from \href{https://www.bonappetit.com/recipe/cacio-e-pepe}{Bon App\'{e}tit}.]{Cacio E Pepe}
+\index{Pasta!cacio e pepe}
+\diet{\ve}
+
+\recipe[Originally from \href{https://www.bonappetit.com/recipe/simple-carbonara}{Bon App\'{e}tit}.]{Simple Carbonara}
+\index{Pasta!carbonara}
+
+\recipe{Easy Pesto}
+\index{Pasta!pesto}
+\diet{\ve}
+\serves[Makes]{1 cup}
+\preptime{15 minutes}
+
+\begin{ingreds}
+	2 cups fresh basil leaves, packed
+	\half{} cup freshly Romano or Parmesan-Reggiano cheese (about 2 ounces)
+	\half{} cup extra virgin olive oil
+	\third{} cup pine nuts
+	3 garlic cloves, minced (about 3 teaspoons)
+	\quarter{} teaspoon salt
+	\sfrac{1}{8} teaspoon freshly ground black pepper
+\end{ingreds}
+
+\begin{method}
+	Place the basil leaves and pine nuts into the bowl of a food processor and pulse a several times.
+
+	Add the garlic and Parmesan or Romano cheese and pulse several times more. Scrape down the sides of the food processor with a rubber spatula.
+
+	While the food processor is running, slowly add the olive oil in a steady small stream. Adding the olive oil slowly, while the processor is running, will help it emulsify and help keep the olive oil from separating. Occasionally stop to scrape down the sides of the food processor.
+
+	Stir in salt and freshly ground black pepper, add more to taste. If pesto is too bitter, add a small amount of white sugar.
+\end{method}
+
+\begin{notes}
+    Try adding a can of drained artechoke hearts to the finished dish
+
+    Basil pesto darkens when exposed to air, so to store, cover tightly with plastic wrap making sure the plastic is touching the top of the pesto and not allowing the pesto to have contact with air. The pesto will stay greener longer that way.
+\end{notes}
+
+\recipe{Thai Peanut Noodles}
+\index{Pasta!thai}
+\diet{\ve\df}
+\preptime{20 minutes}
+\serves{4}
+
+
+\begin{ingreds}
+	12 oz of linguine
+	4 tablespoons of sesame oil
+	\half{} cup green onion, chopped
+	1 cup finely shredded carrot
+	2 cups frozen stir fry veggies
+	3 tablespoons fresh minced garlic
+	\half{} tablespoon ground ginger or 1 tablespoon fresh ginger
+	\quarter{} cup honey
+	\quarter{} cup creamy peanut butter
+	\quarter{} cup soy sauce
+	3 tablespoons rice wine vinegar
+	\half{} tablespoon chili-garlic sauce
+\end{ingreds}
+
+\begin{method}
+	Cook pasta in a large pot of salted water according to package directions.
+	Drain and return to pot.
+
+	Add 2 tablespoons sesame oil and toss to coat.
+	Set aside.
+
+	Heat remaining 2 tablespoons sesame oil in heavy pot over medium-high heat.
+	Add green onions, carrots, stir-fry veggies, garlic and ginger.
+	Saute until vegetables soften, about 4 minutes.
+
+	Add honey, peanut butter, soy sauce, vinegar and chili-garlic sauce and mix well.
+	Simmer sauce 2 minutes.
+
+	Pour sauce over pasta and toss well.
+	Transfer to platter and serve warm.
+
+	Garnish with additional green onions and sesame seeds, if desired.
+\end{method}
+
+
+\recipe[A twist on a classic \href{https://food52.com/recipes/23756-joan-nathan-s-chosen-stuffed-cabbage}{Stuffed Cabbage} recipe, from the Maline family]{``Un''-Stuffed Cabbage}
+\index{Beef!meatballs}
+\index{Cabbage!stuffed}
+\diet{\df}
+\serves{12}
+\preptime{20 minutes}
+\cooktime[Baking time]{2 hours}
+
+\begin{ingreds}
+    \ingredients[Filling]
+    1 head cabbage, about 2 pounds
+     2 pounds ground beef
+    1 teaspoon salt
+    \half{} teaspoon pepper
+    2 large eggs
+    \third{} cup ketchup
+    \half{} cup rice, uncooked
+    1 small onion, finely chopped
+    \columnbreak
+    \ingredients[Sauce]
+    1 can (35 oz) chopped tomatoes
+    2 tablespoons tomato paste
+    2 large onions, sliced
+    \half{} cup ketchup
+    2 lemons
+    \third{} cup brown sugar
+    \third{} cup raisins (optional)
+    1 tablespoon oil
+    Salt and pepper, to taste
+\end{ingreds}
+
+\begin{method}[Preheat oven to \temp{350}]
+    Shred the cabbage by cutting in half, removing the stem and core, and the chopping lengthwise in small strips. Rinse, pat dry and set aside.
+
+   To make the sauce: Cook onions with oil in a saucepan for a few minutes, then add the tomatoes, tomato paste, salt and pepper to taste, onions, ketchup, the juice of one lemon, brown sugar, and raisins. Bring to a boil and let simmer for 15 minutes, covered.
+
+   While sauce is simmering: In a large bowl, mix the ground beef, salt, pepper, eggs, rice, ketchup, and chopped onion. Form into approximately 24 meatballs and place in the bottom of two baking dishes. Surround with shredded cabbage.
+
+   When sauce is complete, pour over both dishes evenly, mixing slightly to coat.
+
+   Cover with foil and bake for one and a half hours. Uncover and taste for seasoning, adding additional lemon juice if necessary or water if too dry. Bake uncovered for an additional half hour and serve.
+\end{method}
+
+\begin{notes}
+    Even better the next day - spoon into a small saucepan with a little water and heat.
+\end{notes}
+
+\recipe[This recipe originally from \href{https://cooking.nytimes.com/recipes/1020756-quick-chicken-and-dumplings}{NYTimes Cooking}.]{Easy Chicken and Dumplings Soup}
+\index{Soup!chicken}
+\index{Chicken!soup}
+\serves{4 to 6 (about 9 cups)}
+\preptime{10 minutes}
+\cooktime{15 minutes}
+
+\begin{ingreds}
+    3 tablespoons unsalted butter
+    2 medium carrots or 8 ounces butternut squash, peeled and chopped into \half{}-inch pieces (about 1 cup)
+    1 medium leek, trimmed, white and pale green portion halved lengthwise and thinly sliced (about 1 cup)
+    2 medium celery stalks, peeled and sliced \half{}-inch thick (about \sfrac{2}{3} cup)
+    3 garlic cloves, finely chopped
+    1 tablespoon finely chopped fresh rosemary
+    2 teaspoons fresh thyme leaves
+    1 teaspoon poultry seasoning(optional)
+    Kosher salt and black pepper
+    3 tablespoons all-purpose flour
+    5 cups chicken stock
+    1 cup heavy cream
+    1 package (16 oz) gnocci
+    \half{} small rotisserie chicken or 2 cooked chicken breasts, torn into bite-sized pieces (about 2 cups shredded meat)
+\end{ingreds}
+
+\begin{method}
+    In a large pot, melt the butter over medium. Add the carrots, leek, celery, garlic, rosemary, thyme and poultry seasoning, if using. Season generously with salt and pepper, and cook, stirring occasionally, until vegetables are slightly softened, about 5 minutes.
+
+    Sprinkle with the flour, then cook, stirring, 2 minutes. (This cooks the flour to soften its raw flavor.) Gradually stir in the stock and cream, and bring to a boil over high heat.
+
+    Once the mixture boils, stir in the gnocchi, reduce the heat to medium and cook until gnocchi and vegetables are tender, about 5 minutes. Stir in the chicken in the last couple of minutes. Season to taste with salt and pepper.
+
+    Divide among bowls and top with fresh tarragon and more black pepper, if desired.
+\end{method}
+
+\begin{notes}
+If using chicken breasts instead of rotisserie chicken, boiling for 15-20 minutes with salt, rosemary, and thyme is a good and simple method of cooking.
+\end{notes}
+
+\recipe{Chicken Involtini with Proscuitto and Basil}
+\index{Chicken!involtini}
+\serves{4}
+\preptime{20 minutes}
+\cooktime{25 minutes}
+\begin{ingreds}
+    4 boneless, skinless chicken breast halves, about 8 oz each, tenders removed
+    1 teaspoon kosher salt
+    2 teaspoon granulated garlic
+    \half{} teaspoon freshly ground black pepper
+    4 very thin slices of proscuitto
+    4 thin slices of provolone cheese, halved
+    8 large basil leaves, plus more for garnish
+    Extra virgin olive oil
+    2 cups good-quality tomato sauce (optional)
+\end{ingreds}
+\begin{method}[Preheat oven to \temp{375}]
+    Place chicken between two large pieces of plastic wrap and gently pound thin with the flat size of a tenderizer or a the bottom of a small skillet until about \quarter{} inch thick. Do not pound too hard or chicken might fall apart.
+
+    Season each piece of chicken on both sides with salt, granulated garlic, and pepper. Arrange chicken with smooth side down on a work surface.
+
+    Lay a piece of proscuitto on each piece of chicken. Then, lay down 2 halves of the provolone and then 2 basil leaves. Carefully roll up the chicken, keeping it snug as you work. Poke 1-2 wooden skewers between each roll to hold them in place. Lightly brush each rolled piece of chicken with olive oil.
+
+    Place on a baking sheet and bake for 20 minutes, or until a meat thermometer reads \temp{165}. While cooking, heat tomato sauce. Once done, remove and let rest for 3 to 5 minutes.
+
+    Remove skewers from chicken. Optionally, slice and serve in a warm pool of sauce, garnished with additional torn basil.
+\end{method}
+\begin{notes}
+    Instead of pounding, you can buy thin-sliced chicken.
+
+    The original recipe uses butchers twine instead of skewers, and grills for 12 minutes over medium heat instead of baking.
+\end{notes}
+
+\recipe[A classic Indian curry dish, from \href{https://cafedelites.com/butter-chicken/}{Cafe Delites}. Best served over rice.]{Butter Chicken}
+\index{Chicken!butter}
+\index{Curry!chicken}
+\serves{5-6}
+\preptime{15 minutes}
+\cooktime{45 minutes}
+\begin{ingreds}
+	\ingredients[For the Sauce]
+	2 tablespoons olive oil
+	2 tablespoons ghee
+	1 large onion, chopped
+	1\half{} tablespoons garlic, minced
+	1 tablespoon ginger, finely grated
+	1\quarter{} teaspoons ground cumin
+	1\half{} teaspoons garam masala
+	1 teaspoon ground coriander
+	1 can (14 oz) crushed tomatoes
+	1 teaspoon Indian red chili powder
+	1\quarter{} teaspoons salt
+	1 cup of heavy cream
+	1 tablespoon sugar
+	\half{} teaspoon kasoori methi or dried fenugreek leaves \\(optional)\\
+	\ingredients[For the Chicken Marinade]
+	28 oz boneless, skinless chicken thighs or breasts, cut into bite size pieces
+	\half{} cup plain yogurt
+	1 \half{} tablespoons minced garlic
+	1 tablespoon ginger, finely grated
+	2 teaspoons garam masala
+	1 teaspoon turmeric
+	1 teaspoon Indian red chili powder
+	1 teaspoon salt
+\end{ingreds}
+
+\begin{method}
+	In a bowl, combine chicken with all of the ingredients for the chicken marinade; let marinate for at least 30 minutes and up to overnight.
+
+	Heat oil in a large skillet or pot over medium-high heat. When sizzling, add chicken pieces in batches of two or three, making sure not to crowd the pan. Fry until browned for only 3 minutes on each side. Set aside and keep warm. (You will finish cooking the chicken in the sauce.)
+
+	Heat butter or ghee in the same pan. Fry the onions until they start to sweat (about 6 minutes) while scraping up any browned bits stuck on the bottom of the pan.
+
+	Add garlic and ginger and saut\'{e} for 1 minute until fragrant, then add ground coriander, cumin and garam masala. Let cook for about 20 seconds until fragrant, while stirring occasionally.
+
+	Add crushed tomatoes, chili powder and salt. Let simmer for about 10-15 minutes, stirring occasionally until sauce thickens and becomes a deep brown red color.
+
+	Remove from heat, scoop mixture into a blender and blend until smooth. You may need to add a couple tablespoons of water to help it blend (up to 1/4 cup). Work in batches depending on the size of your blender.
+
+	Pour the pur\'{e}ed sauce back into the pan. Stir the cream, sugar and crushed kasoori methi (or fenugreek leaves) through the sauce. Add the chicken with juices back into the pan and cook for an additional 8-10 minutes until chicken is cooked through and the sauce is thick and bubbling.
+
+	Garnish with chopped cilantro (optional) and serve.
+\end{method}
+
+\begin{notes}
+    Substitutions:
+
+   	\half{} tsp Cayenne for every 1 tsp Indian red chili powder
+
+   	1 tbs butter + 1 tbs olive oil for 2 tbs of ghee
+\end{notes}
+
+\recipe{Chicken Fran\c{c}ais}
+\index{Chicken}
+
+\recipe{Bachelor's Chicken}
+\index{Chicken}
+
+\begin{ingreds}
+	1 package chicken thighs
+	\quarter{} cup balsamic vinegar
+	2 tablespoons olive oil
+	\quarter{} cup peppercorn mustard or country style dijon
+	2 teaspoons worcestershire sauce
+	\half{} teaspoon dried thyme
+	Salt and pepper to test
+\end{ingreds}
+
+\begin{method}
+	Trim and discard excess fat from thighs.
+
+	Whisk together vinegar, oil, mustard, worcestershire sauce. thyme, salt and pepper.
+
+	Place thighs in marinade, cover, and refrigerate for 30 minutes, up to overnight.
+
+	Grill or broil for 25-35 minutes, or bake at \temp{375} for 40 minutes or until done.
+\end{method}
+
+\recipe[This Korean-inspired dish originally from \href{https://sorted.club/recipe/korean-fried-sweet-and-sour-chicken-with-sesame-sticky-rice/}{sorted club}.]{Sweet and Spicy Fried Chicken}
+\index{Chicken!fried}
+\serves{3-4}
+\preptime{10 minutes}
+\cooktime{45}
+
+\begin{ingreds}
+    \ingredients[For the chicken]
+    4 chicken thighs boneless, skinless
+    100 ml buttermilk
+    25 g fresh ginger
+    1 tablespoon ketchup
+    1.5 L vegetable oil
+    100 g cornflour
+    100 g plain flour
+    \columnbreak
+    \ingredients[For the sauce]
+    4 tablespoons ketchup
+    1 can pears in syrup
+    4 tablespoons gochujang paste
+    2 tablespoons fish sauce
+    4 cloves garlic
+    25 g fresh ginger
+    \half{} tablespoon cider vinegar
+    \ingredients[For serving]
+    200 g sushi rice
+    4 spring onions
+    2 tablespoons white sesame seeds
+\end{ingreds}
+
+\begin{method}
+    Cut each of the chicken thighs into 4, then place into a large mixing bowl along with the buttermilk and ketchup. Finely grate over ginger. Season with salt, mix and set aside.
+
+    Cook rice as directed, set aside and keep warm.
+
+    Add ketchup, the juice from the tin of pears, the gochujang paste, and the fish sauce into a small saucepan. Peel and finely grate in the garlic and the remaining ginger. Add the vinegar, and place the pan over a high heat, bringing to a boil and reducing by \sfrac{2}{3}.
+
+    While the sauce is reducing, begin to fry the chicken. Pour the oil into a large saucepan, careful to not overfill the pan, and put it over medium-high heat. Preheat the oil to \temp{350}, or use a deep fat fryer if you have one. Never leave the pan unattended.
+
+    Mix the flours together in a shallow bowl, along with a generous pinch of salt. Shake any excess buttermilk mix from the chicken pieces and then place them into the flour mix. Toss everything in the bowl to coat the chicken fully.
+
+    Sprinkle a little flour into the oil - it should sizzle immediately if hot enough. Carefully lower the coated chicken into the oil and fry for 6-8 minutes, until the crust is golden and the chicken is opaque white throughout. You may have to flip the chicken to cook it evenly. Do this in batches, depending on the size of your pan. While you wait, dice 2 pear halves from the tin from earlier and thinly slice the spring onions.
+
+    Once cooked, use tongs to transfer the chicken straight from the oil to the pan with the sauce. Coat the chicken in the sauce.
+
+    Fold the diced pear and spring onion whites through the rice and season to taste with salt.
+
+    Divide between serving bowls, then place the chicken on top. Pour out any excess sauce, then finish with a liberal sprinkling of sesame seeds and the spring onion greens.
+\end{method}
+
+
+\recipe[This recipe originally from \href{https://www.delish.com/cooking/recipe-ideas/recipes/a51825/best-slow-cooker-chicken-tortilla-soup-recipe/}{delish}.]{Slow-Cooker Chicken Tortilla Soup}
+\index{Chicken!soup}
+\index{Soup!tortilla}
+\serves{6}
+\preptime{15 minutes}
+\cooktime[Slow cook time]{5 hours}
+\begin{ingreds}
+	1 lb. boneless skinless chicken breasts
+	1 can (15 oz) black beans, rinsed
+	1 cup frozen corn
+	2 bell peppers, chopped
+	1 white onion, chopped
+	1 can (15 oz) fire-roasted tomatoes
+	\quarter{} cup freshly chopped cilantro, plus more for garnish
+	3 cloves garlic, minced
+	1 tablespoon cumin
+	1 tablespoon chili powder
+	1 teaspoon kosher salt
+	2 cups low-sodium chicken broth
+	1 cup shredded Monterey jack
+	1 tablespoon extra-virgin olive oil
+	3 small corn tortillas, cut into strips
+	Sliced avocado, for serving
+	Sour cream, for serving
+	Lime wedges, for serving
+\end{ingreds}
+
+\begin{method}
+	In a large slow cooker, combine chicken, black beans, corn, peppers, onion, fire-roasted tomatoes, cilantro, garlic, cumin, chili powder, salt, and chicken broth.
+
+	Cover and cook on low until chicken is cooked and falling apart, 5 to 6 hours.
+
+	Shred chicken with a fork, then top soup with Monterey Jack and cover to let melt, 5 minutes more.
+
+	Meanwhile, make tortilla crisps: In a large skillet over medium heat, heat oil. Add tortilla strips and cook until crispy and golden, 3 minutes. Transfer to a paper towel-lined plate and season with salt.
+
+	Serve soup topped with tortilla crisps, avocado, sour cream, cilantro, and lime.
+\end{method}
+
+\recipe[Absolutely stunning, slightly-crispy, melt-in-your-mouth carnitas served with chunky, bright guacamole, sweet and spicy mango salsa, and a mellow, soothing lime crema.]{Uncle Pete's Carnitas Tacos}
+\index{Pork!carnitas}
+\index{Tacos}
+\serves{6-8}
+\cooktime{9.5 hours (1 active)}
+\preptime{1 hour}
+
+\begin{ingreds}
+	1 pork shoulder, between 5 and 8 pounds
+	1 cup lager, IPA, or dry cider.
+	3 Spanish white onions
+	1 red onion
+	4 avocados
+	5-6 roma tomatoes
+	2 mangoes
+	2 jalape\~nos
+	5-8 limes
+	1 orange
+	6-8 cloves of garlic or equivalent in jarred garlic\footnote{jarlic}
+	\half{} head lettuce (optional)
+	Fresh cilantro
+	Cumin, chili powder, paprika, and adobo seasoning.
+	Salt and pepper to taste.
+	Small taco size tortillas.
+	1 wedge Cotija cheese
+	Sour cream
+\end{ingreds}
+
+\begin{method*}{Carnitas}
+	Remove fat cap from pork shoulder, but do not remove any more fat. Cut up remaining meat into roughly 3-inch cubes.
+
+	Thoroughly coat meat in salt and pepper. Rub it in.
+
+	Place meat into a crock pot.
+
+	Roughly dice 1 large Spanish onion
+	and mince 4-5 cloves garlic, add to crock pot
+
+	Pour beer over meat.
+
+	Add seasonings: a big shake cumin (lets call it 7-9 dashes), medium shake chili powder, medium shake paprika, medium shake adobo if available.
+
+	Cut the orange in half and add the juice and flesh to the pot.
+
+	Add the juice of two limes and the flesh of one of them to the pot.
+
+	Put the crock pot on low for a minimum of 6.5 hours, preferably up to 8.5. While that is cooking, prepare side dishes.
+
+	After pork is cooked, place meat on a large cutting board or in a large bowl and pull apart with two forks.
+
+	Lay it out on a tinfoil sheet in (as close as possible to) one layer on a baking tray. Ladle some cooking liquid over it, add additional salt and pepper, and broil for 5-7 minutes. Remove, mix a bit, salt again, ladle again, broil again. Repeat until most of the meat is just barely browning.
+
+	Serve immediately.
+\end{method*}
+~\\
+\begin{method*}{Guacamole}
+	Empty avocados into a bowl.
+
+	Dice up somewhere between \threequarters{} and 1 whole white onion, add to bowl.
+
+	Roughly mince a good handful of cilantro and add.
+
+	Add either a half or whole jalepe\~no. Seeds can be removed or left in.
+
+	Roughly mix with a fork.
+
+	Add the juice of at least two limes. Add more to taste.
+
+	Add a pinch of cumin and salt and pepper to taste, more salt than pepper. Frankly, a ton of salt. More than you think.
+
+	Mix again gently, tasting and salting to desired consistency and flavor
+
+	Too much salt can be amended with either another avocado or some more cilantro.
+
+	Cover and fridge, making sure to press plastic wrap/foil down on top.
+\end{method*}
+~\\
+\begin{method*}{Mango Salsa}
+	In a medium bowl, combine : 4-5 diced roma tomatoes, \half{} diced white onion, \half{} diced red onion,
+	1-2 cloves minced garlic, one \half{} or 1 diced jalape\~no, 2 finely diced mangoes.
+
+	Add a handful of chopped cilantro, the juice of two limes, and (optionally) a splash or orange, pineapple, or other fruit juice.
+
+	Finish off with a pinch of cumin, a	pinch of paprika, and salt and pepper to taste.
+\end{method*}
+~\\
+\begin{method*}{Crema}
+	Combine 4 large spoonfuls of sour creme, the juice of one lime, and a pinch of paprika.
+
+	Mix well and serve.
+\end{method*}
+
+\begin{notes}
+	 Serve ONLY on slightly-toasted tiny tortillas from the big bag. Pair with simple, lime/sugar/tequila margaritas and trashy television. Share with loved ones.
+
+	 For beer choice: lager is the standard for carnitas, IPA is more fruity, and cider is great for a little sweet kick. In Pete's experience, a dry cider is best.
+\end{notes}
+
+\recipe[Originally from \href{https://www.inspiredtaste.net/37062/juicy-skillet-pork-chops/}{Inspired Taste}]{Juicy Skillet Pork Chops}
+\index{Pork!chops}
+
+\recipe{Alicia's Chicken and Black Bean Enchiladas}
+\index{Chicken!enchiladas}
+\index{Enchiladas}
+\serves{6}
+
+\begin{ingreds}
+	\threequarters{} pound skinless, boneless chicken breasts
+	3 slices of bacon
+	2 cloves garlic, minced
+	1\half{} cups jarred salsa
+	1 can (16 oz) black beans
+	1 large red bell pepper, chopped
+	1 teaspoon ground cumin
+	\quarter{} teaspoon salt
+	\half{} cup sliced green onions
+	12 medium flour tortillas
+	1\half{} cups (6 oz) shredded Monterey Jack cheese
+	Shredded lettuce, sour cream, avocado slices, and chopped tomato for toppings.
+\end{ingreds}
+
+\begin{method}[Preheat oven to \temp{350}]
+	Cut chicken into short, thin strips.
+
+	Cook bacon in 10-inch skillet until crisp. Remove to paper towel; crumble.
+
+	Pour off all but 2 tablespoons bacon drippings. Cook and stir chicken and garlic in drippings until chicken is no longer pink.
+
+	Stir in \half{} cup of the salsa, beans (undrained), red pepper, cumin and salt. Simmer until thickened, 7 to 8 minutes, stirring occasionally.
+
+	Stir in green onions and reserved bacon.
+
+	Spoon heaping \quarter{} cup mixture down center of each tortilla; top with 1 tablespoon cheese.
+
+	Roll up; place seam side down in lightly greased 13 x 9-inch baking dish.
+
+	 Spoon remaining 1 cups salsa evenly over enchiladas. Bake at \temp{350}. 15 minutes. Top with remaining cheese; return to oven about 3 minutes.
+
+	 Top as desired and serve.
+\end{method}
+
+\recipe{White Bean Chicken Chili}
+\index{Chicken!chili}
+\index{Chili!chicken}
+
+\recipe{Frito Pie}
+\index{Beef!chili}
+\index{Chili!beef}
+\diet{\almostve}
+\serves{8}
+\preptime{5 minutes}
+\cooktime{1 hour}
+
+\begin{ingreds}
+
+	2 pounds ground chuck
+	3 cloves garlic, minced
+	1 can (12-14 oz) tomato sauce
+	1 can (10 oz) Ro-tel (diced tomatoes and chilies)
+	\half{} teaspoon salt
+	1 teaspoon ground oregano
+	1 tablespoon ground cumin
+	2 tablespoon chili powder (more to taste)
+	1 can (14 oz) kidney beans, drained and rinsed
+	1 can (14 oz) pinto beans, drained and rinsed
+	\quarter{} cup masa (corn flour) or regular corn meal
+	\half{} cup warm water
+	Individual bags of Fritos
+	Grated sharp cheddar cheese
+	Diced red onion (optional)
+\end{ingreds}
+
+\begin{method}
+	Brown ground chuck with garlic in a pot over medium-high heat. Add tomato sauce, Rotel, salt, oregano, cumin, and chili powder. Cover and reduce heat to low. Simmer for 30 minutes.
+
+	Add drained and rinsed beans. Stir to combine, then cover and simmer for another 20 minutes.
+
+	Mix masa with water, then add to the chili. Stir to combine and simmer for a final 10 to 15 minutes. Set aside.
+
+	Serve by slicing the Frito bags open lengthwise. Pile in chili and cheese, and diced onion if using. Serve immediately with plastic forks.
+\end{method}
+
+% --------------------------------------------------------------------------
+\category{Sides}
+
+\recipe{Brussels Sprouts with Fennel}
+\index{Brussels Sprouts}
+\diet{\almostve\df\gf}
+\serves{4}
+\preptime{5 minutes}
+\cooktime[Baking time]{20 minutes}
+\begin{ingreds}
+    4 cups Brussels sprouts
+    \half{} cup fennel, thinly sliced (about 1 bulb)
+    2 tablespoons coconut oil, butter, or melted bacon fat
+    2 tablespoons chopped fennel fronds
+    Sea salt and black pepper to taste
+\end{ingreds}
+
+\begin{method}[Preheat oven to \temp{375}]
+    Slice Brussels sprouts into \sfrac{1}{8}-inch pieces, removing ends and outermost leaves. Place the sliced sprouts and fennel onto a large baking sheet and top with the fennel fronds.
+
+    Toss all of the vegetables with the desired fat. Top with sea salt and black pepper.
+
+    Roast for 20 minutes.
+\end{method}
+
+\recipe[A simple recipe from \href{https://iwashyoudry.com/parmesan-roasted-broccoli/}{I Wash, You Dry}.]{Parmesan Roasted Broccoli}
+\index{Broccoli}
+\diet{\ve}
+\serves{6}
+\preptime{5 minutes}
+\cooktime[Baking time]{30 minutes}
+\begin{ingreds}
+    6 to 7 cups fresh broccoli florets (about 2 heads)
+    4 tbsp olive oil
+    \quarter{} cup Italian style breadcrumbs
+    \half{} cup freshly shredded parmesan cheese
+    1 tsp garlic powder
+    \half{} tsp salt
+    \quarter{} tsp black pepper
+\end{ingreds}
+\begin{method}[Preheat oven to 425 degrees F. Line a baking sheet with tinfoil and coat with non-stick spray.]
+    Combine the broccoli and olive oil in a large zip close bag and shake to coat.
+
+    Add the breadcrumbs, parmesan cheese, garlic powder, salt and pepper to the bag and shake to coat. Use your hands to rub the bag and help the coating to stick to the broccoli.
+
+    Spread the broccoli in an even layer on the baking sheet, picking up any coating that's on the bottom and dispersing it over the broccoli as needed.
+
+    Bake for 12 minutes, then stir and flip the broccoli, bake for an additional 10 to 15 minutes, until crisp-tender.
+\end{method}
+
+\recipe{Red Potato Salad}
+\index{Potato!salad}
+\serves[Makes]{10 cups}
+\preptime{15 minutes}
+\cooktime{20 minutes}
+\diet{\ve\gf}
+
+\begin{ingreds}
+	3 pounds red potatoes, rinsed and scrubbed clean, cut into 1 inch pieces
+	1 cup mayonnaise
+	1 tablespoon spicy mustard
+	1 teaspoon salt
+	\half{} teaspoon black pepper
+	\threequarters{} teaspoon dried dill
+	\half{} teaspoon garlic powder
+	1 cup fully cooked chopped bacon pieces
+	\half{} cup sliced green onions (about 2 to 3 green onions)
+	\threequarters{} cup sliced celery (about 2 to 3 stalks)
+\end{ingreds}
+
+\begin{method}
+	Place potatoes in a large pot and cover with cold water.  Bring to a boil over high heat, then reduce heat to medium to maintain a gentle boil.  Cook until fork-tender (but not falling apart), about 12 to 15 minutes.
+
+	Drain potatoes in a colander and allow to cool while you’re preparing the other ingredients.
+
+	Stir together mayonnaise, mustard, salt, pepper, dill and garlic powder in a large bowl.
+
+	Transfer drained and cooled potatoes to the bowl with the mayonnaise mixture and gently stir to coat potatoes evenly.  Add bacon, green onions and celery and gently stir again to incorporate.
+	Season with additional salt and pepper, if desired.
+
+	Cover and refrigerate at least 1 hour before serving.
+\end{method}
+
+\recipe[Great during the holidays or with Gumbo]{Candied Walnut Gorgonzola Salad}
+\index{Salad!walnut and gorgonzola}
+\diet{\ve\gf}
+\serves{4}
+\preptime{15 minutes}
+
+\begin{ingreds}
+	\half{} cup walnut halves
+	\quarter{} cup sugar
+	3 cups mixed greens
+	\half{} cup crumbled Gorgonzola cheese
+	\half{} cup dried cranberries
+	1 tablespoon raspberry vinaigrette
+	1 tablespoon white vinegar
+	1 tablespoon olive oil
+\end{ingreds}
+
+\begin{method}
+	Place walnuts and sugar in a skillet over medium heat, stirring constantly until the sugar dissolves into a light brown liquid and coats the walnuts.
+
+	Remove walnuts from skillet and spread on a sheet of aluminum foil to cool.
+
+	Place the mixed greens, cranberries, and cheese in a large salad bowl. Toss gently with the vinaigrette, vinegar, and olive oil. Add candied walnuts and toss again.
+\end{method}
+
+
+\recipe[This easy recipe originally from \href{https://www.foodnetwork.com/recipes/claire-robinson/easy-tzatziki-recipe-1924366}{Food Network}.]{Tzatziki Sauce}
+\index{Tzatziki}
+\preptime{15 minutes}
+\serves[Makes]{1\half{} cups}
+\diet{\ve\gf}
+
+\begin{ingreds}
+	1 cup Greek whole milk yogurt
+	1 English cucumber, seeded, finely grated and drained
+	2 cloves garlic, finely minced
+	1 teaspoon lemon zest plus 1 tablespoon fresh lemon juice
+	2 tablespoons chopped fresh dill
+	Kosher salt and freshly cracked black pepper
+\end{ingreds}
+
+\begin{method}
+	In a medium bowl, whisk together the yogurt, cucumber, garlic, lemon zest, lemon juice and dill. Season with salt and pepper. Chill.
+\end{method}
+
+\begin{notes}
+	For some extra flavor, add some olive oil and some coarsely chopped fresh mint.
+\end{notes}
+
+
+\recipe[Recipe by \href{https://www.rachelcooks.com/2020/03/11/homemade-thousand-island-dressing/}{Rachel Cooks}.]{Thousand Island Dressing}
+\index{Dressing!thousand island}
+\preptime{10 minutes}
+\diet{\ve\gf}
+\serves[Makes]{1\threequarters{} cups}
+
+\begin{ingreds}
+	1 cup mayonnaise
+	\quarter{} cup sweet pickle relish
+	\quarter{} cup ketchup
+	1 tablespoon white vinegar
+	1 tablespoon granulated sugar
+	2 tablespoons finely diced onion
+	\half{} teaspoon finely minced garlic (about 1 clove)
+	\quarter{} teaspoon kosher salt
+	\sfrac{1}{8} teaspoon ground black pepper
+\end{ingreds}
+
+\begin{method}
+	Mix all ingredients together in a bowl or jar. Refrigerate for at least one hour to let flavors meld.
+\end{method}
+
+\begin{notes}
+	Don't have sweet pickle relish? Use dill pickle relish or chopped up pickles.
+
+	Variations: add hot sauce, chili sauce, or horseradish. Or add 1 chopped hard boiled egg.
+\end{notes}
+
+\recipe{Dumpling Sauce}
+\index{Sauce!dumplings}
+\diet{\vg}
+\preptime{10 minutes}
+
+
+% --------------------------------------------------------------------------
+\category{Desserts}
+
+\recipe{M\&M Cookies}
+\index{Cookies!M\&M}
+\serves[Makes]{14 jumbo cookies}
+\diet{\ve}
+\cooktime[Baking time]{20 minutes}
+\preptime{15 minutes}
+\begin{ingreds}
+    \half{} cup (1 stick) unsalted butter, softened
+    \half{} cup butter-flavored shortening
+    \threequarters{} cup firmly packed light brown sugar
+    1\half{} teaspoon vanilla extract
+    1 egg
+    1\threequarters{} cups all purpose flour
+    1 teaspoon baking soda
+    \half{} teaspoon salt
+    1\half{} cups M\&M candies, divided
+\end{ingreds}
+\begin{method}[Preheat oven to \temp{350}]
+In a large bowl, cream butter and shortening with brown sugar and vanilla until light and fluffy. Beat in egg.
+
+Stir flour, baking soda, and salt together in a separate bowl. Blend into egg mixture. Fold in 1 cup M\&Ms
+
+Cover and refridgerate for easier handling.
+
+Shape dough into 2-inch balls. Place 4 inches apart on an ungreased baking sheet. Use remaining candies to decorate top of cookies.
+
+Bake 15-20 minutes until golden. Cool 2 minutes. Gentle transfer to racks with large spatulla.
+\end{method}
+
+\recipe[The ``Ultimate Chocolate Chip Cookie'' recipe from Crisco.]{Classic Chocolate Chip Cookies}
+\index{Cookies!chocolate chip}
+\diet{\ve}
+\serves[Makes]{3 dozen cookies}
+\preptime{20 minutes}
+\cooktime[Baking time]{13 minutes}
+
+\begin{ingreds}
+	\quarter{} cup Crisco Butter Flavor Shortening
+	1\quarter{} cups firmly packed light brown sugar
+	2 tablespoons milk
+	1 tablespoon vanilla extract
+	1 egg
+	2 cups all-purpose flour
+	1 teaspoon salt
+	\threequarters{} teaspoon baking soda
+	1 cup semi-sweet chocolate chips
+	1 cup coarsely chopped pecans (optional)
+\end{ingreds}
+
+\begin{method}[Preheat oven to \temp{375}]
+	Beat shortening, brown sugar, milk, and vanilla in a large bowl with mixer on medium speed until well blended. Beat in egg.
+
+	Stir flour, salt, and baking soda in medium bowl. Gradually beat into creamed mixture until just blended. Stir in chocolate chips and nuts (if desired).
+
+	Drop by rounded measuring tablespoonfuls 3 inches apart on a baking sheet
+
+	Bake 8 to 10 minutes for chewy cookies, or 11 to 13 minutes for crisp cookies. Cool 2 minutes. Remove to wire rack to cool completely.
+\end{method}
+
+\recipe[Savory and sweet with just a little chew, these are a twist on the classic. Originally by \href{https://www.bonappetit.com/recipe/bas-best-chocolate-chip-cookies}{Bonn App\'{e}tit}.]{Brown Butter Chocolate Chip Cookies}
+\index{Cookies!chocolate chip}
+\serves[Makes]{16 large cookies}
+\diet{\ve}
+\preptime{30 minutes}
+\cooktime[Baking time]{10 minutes}
+
+\begin{ingreds}
+    1\half{} cups (200 g) all-purpose flour (spooning into measuring cups, then leveling)
+    \sfrac{3}{4} teaspoon (4 g) Morton kosher salt
+    \sfrac{3}{4} teaspoon (4 g) baking soda
+    \sfrac{3}{4} cup (1\half{} sticks) unsalted butter, divided
+    \quarter{} cup (50 g) granulated sugar
+    1 cup (200 g) (packed) dark brown sugar
+    1 large egg
+    2 large egg yolks
+    2 teaspoons vanilla extract
+    6 oz bittersweet chocolate (60\%–70\% cacao), coarsely chopped
+\end{ingreds}
+
+\begin{method}[Preheat oven to \temp{375} with racks in upper and lower thirds]
+    Whisk flour, salt, and baking soda in a small bowl; set aside.
+
+    Cook \half{} cup (1 stick) of butter in a large saucepan over medium heat, swirling often and scraping bottom of pan with a heatproof rubber spatula, until butter foams, then browns, about 4 minutes. Transfer butter to a large heatproof bowl and let cool 1 minute. Cut remaining \quarter{} cup (\half{} stick) butter into small pieces and add to brown butter - it should start to melt, but \textbf{not} foam or sizzle.
+
+    Once butter is melted, add both sugars and whisk, breaking up any clumps, until sugar is incorporated and no lumps remain. Add egg and egg yolks and whisk until sugar dissolves and mixture is smooth, about 30 seconds. Whisk in vanilla.
+
+    Using rubber spatula, fold reserved dry ingredients into butter mixture just until no dry spots remain, then fold in chocolate. The dough will be soft but should hold its shape once scooped; if it slumps or oozes after being scooped, stir dough back together several times and let rest 5–10 minutes (fridging if necessary) until scoops hold their shape as the flour hydrates.
+
+    Scooping about 3 tablespoons, portion out 16 balls of dough and divide between 2 parchment-lined rimmed baking sheets. Bake cookies, rotating sheets if cookies are browning very unevenly, until deep golden brown and firm around the edges, 8–10 minutes. Let cool on baking sheets.
+\end{method}
+
+\recipe{Muddy Buddies}
+\index{Cereal!Chex}
+\diet{\ve}
+
+\recipe[A classic dessert created by third-grade art teacher Ms. Oien.]{Ice Cream Cake}
+\index{Ice Cream!cake}
+\index{Cake!ice cream}
+\serves{10-12}
+\preptime{15 - 20 minutes}
+\cooktime[Chill time]{1 hour}
+\diet{\ve}
+
+\begin{ingreds}
+    1 package OREO™ Cookies, crushed
+    1 stick salted butter, melted
+    1 quart desired flavor of ice cream
+    1 jar hot fudge, unheated
+    1 container Cool Whip™
+    \columnbreak
+    \phantom{ }
+\end{ingreds}
+
+
+\begin{method}[Originally described as simply ``Layer in order in 13 by 9 pan, freeze'']
+    Pat crushed cookies into a layer on the bottom of a 13x9 pan, reserving approx 3 cookies for garnish. Pour melted butter on layer evenly.
+
+    Remove ice cream from quart in full block, cutting packaging as necessary. Working quickly, slice the block like a loaf of bread and place in one layer on top of cookie base. Freeze for 15 minutes if ice cream begins to melt.
+
+    Spread hot fudge on ice cream in an even layer. Add cool whip, spreading with an offset spatula or rubber scrapper. Sprinkle reserved cookies on top of cake. Cover and freeze at least 1 hour before serving.
+\end{method}
+
+\begin{notes}
+	Combine this with the following recipe for an extra-special cake. Pour the ice cream directly out of the machine onto the cookie base and freeze for two hours before proceeding.
+\end{notes}
+
+\recipe[Modified from the recipe for frozen custard provided with our Cuisinart machine.]{Homemade Ice Cream}
+\index{Ice Cream!homemade}
+\serves[Makes]{6 cups (about 12 servings)}
+\preptime{30 minutes}
+\cooktime[Chill time]{20 minutes\\(machine) + 2 hours (freezer)}
+\diet{\ve}
+
+\begin{ingreds}
+	2 cups whole milk
+	2 cups heavy cream
+	1 cup granulated sugar, divided
+	Pinch of salt
+	5 large egg yolks
+	\columnbreak
+	\ingredients[For Chocolate]
+	\third{} cup cocoa powder
+	1 teaspoon vanilla extract
+	Shake of instant coffee powder (optional)
+	\ingredients[For Vanilla]
+	1 whole vanilla bean, halved and scraped
+	1\half{} teaspoons vanilla extract
+\end{ingreds}
+
+\begin{method}[If applicable, freeze ice cream maker parts over night before beginning]
+	In a saucepan over medium heat, whisk together the milk, cream, \half{} cup sugar, and salt. If making vanilla, add scrapped vanilla and pod. Bring the mixture to around \temp{190} or just before boiling.
+
+	While mixture is heating, combine yolks and remaining sugar in a medium bowl. Beat until mixture is pale and thick.
+
+	Once mixture is heated, whisk about \third{} of the hot mixture into the yolks and sugar. Do this slowly, whisking constantly. Add another \third{} of the mixture, then return the combined mixture to the saucepan.
+
+	Stir the mixture constantly over low heat until it thickens slightly and coats the back of a wooden spoon. Do not let this mixture boil (target temperature is about \temp{175}), it should only take a couple minutes.
+
+	Remove from heat. Add cocoa and coffee powder if making chocolate. Pour the mixture through a fine mesh strainer into a heatproof container with a lid. Stir in vanilla extract. Cover and refrigerate \textit{at least} 3 hours, but preferably overnight.
+
+	Pour the chilled mixture into an on ice cream maker. Let mix until thickened, around 20 minutes. The ice cream will have a soft, creamy texture. Consume immediately, or if a firmer texture is desired, place into an airtight container and freeze for 2 hours.
+\end{method}
+
+\recipe{Olivia's Pumpkin Pie}
+\index{Pie!pumpkin}
+\diet{\ve}
+\preptime{15 minutes}
+\cooktime[Baking time]{55 minutes}
+\serves{8}
+\begin{ingreds}
+    1 can (15 oz) pumpkin
+    1 can (14 oz) sweetened condensed milk
+    2 large eggs
+    \half{} teaspoon salt.
+    1 9-inch graham cracker pie crust
+    2 teaspoons pumpkin pie spice
+    \ingredients[Alternatively, combine:]
+    1 teaspoon cinnamon
+    \half{} teaspoon ground ginger
+    \half{} teaspoon ground nutmeg
+\end{ingreds}
+\begin{method}[Preheat oven to \temp{425}]
+    Whisk pumpkin, sweetened condensed milk, eggs, spices, and salt in a medium bowl until smooth. Pour into crust.
+
+    Bake for 15 minutes. Lower oven to \temp{350} and continue baking 35-40 minutes or until knife inserted one inch from the crust comes out clean.
+
+    Allow to cool slightly and serve with whipped cream.
+\end{method}
+
+\recipe{Grandma's Cherry Pie}
+\index{Pie!cherry}
+\diet{\ve}
+
+\recipe{Girl Scout Apple Pie}
+\index{Pie!apple}
+\diet{\ve}
+
+\showit[1.25in]{example-image-b}{This is a picture}
+
+% ----------------------------------------------------
+\clearpage\phantomsection\addcontentsline{toc}{section}{Index}
+\printindex
+
+\end{document}
