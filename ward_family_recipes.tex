@@ -9,22 +9,22 @@
 \usepackage{fancyhdr}
 \usepackage{multicol}
 \usepackage[%
-    %letterpaper,
-    papersize={5.5in,8.5in},
-    margin=0.5in,
-    top=0.75in,
-    bottom=0.75in,
-    twoside
-    ]{geometry}
+%letterpaper,
+papersize={5.5in,8.5in},
+margin=0.5in,
+top=0.75in,
+bottom=0.75in,
+twoside
+]{geometry}
 
 \usepackage{graphicx}
 \usepackage{hyperref}
 \usepackage[dvipsnames]{xcolor}
 \hypersetup{ % setup coloring of links
-	colorlinks,
-	linkcolor=black,
-	urlcolor={blue!80!black},
-	pdftitle={Ward Family Recipes}
+colorlinks,
+linkcolor=black,
+urlcolor={blue!80!black},
+pdftitle={Ward Family Recipes}
 }
 
 \usepackage{array}
@@ -43,13 +43,13 @@
 
 %% Borrowed from book.cls
 \newcommand\frontmatter{%
-    \cleardoublepage
-  \@mainmatterfalse
-  \pagenumbering{roman}}
+\cleardoublepage
+\@mainmatterfalse
+\pagenumbering{roman}}
 \newcommand\mainmatter{%
-    \cleardoublepage
-  \@mainmattertrue
-  \pagenumbering{arabic}}
+\cleardoublepage
+\@mainmattertrue
+\pagenumbering{arabic}}
 \makeatother
 
 % Your "recipes.sty" package starts here:
@@ -57,30 +57,30 @@
 
 
 \newcommand{\circled}[1]{%
-	\tikz \node[shape=circle,draw,inner sep=1pt, minimum width=10pt] {\textsc{\tiny #1}};
+\tikz \node[shape=circle,draw,inner sep=1pt, minimum width=10pt] {\textsc{\tiny #1}};
 }
 
 \newcommand{\category}[1]{%
-	\newpage\addcontentsline{toc}{section}{#1}%
+\newpage\addcontentsline{toc}{section}{#1}%
 }
 
 \newcommand{\recipe}[2][]{%
-    \newpage
-    \lhead{}%
-    \chead{}%
-    \rhead{}%
-    \lfoot{}%
-    \rfoot{}%
-    \section*{#2}\addcontentsline{toc}{subsection}{#2}%
-    \if###1##%
-    \else
-        \begin{center}
-			\parbox{0.75\linewidth}{\raggedright\itshape#1}%
-		\end{center}
-    \fi
+\newpage
+\lhead{}%
+\chead{}%
+\rhead{}%
+\lfoot{}%
+\rfoot{}%
+\section*{#2}\addcontentsline{toc}{subsection}{#2}%
+\if###1##%
+\else
+\begin{center}
+    \parbox{0.75\linewidth}{\raggedright\itshape#1}%
+\end{center}
+\fi
 }
 \newcommand{\serves}[2][Serves]{%
-    \chead{#1 #2}}
+\chead{#1 #2}}
 
 \newcommand{\diet}[1]{\rhead{#1}}
 \newcommand{\gf}{\circled{GF}}
@@ -92,10 +92,10 @@
 
 %% Optional arguments for alternate names for these:
 \newcommand{\preptime}[2][Prep time]{%
-    \lfoot{#1: #2}%
+\lfoot{#1: #2}%
 }
 \newcommand{\cooktime}[2][Cook time]{%
-    \rfoot{#1: #2}%
+\rfoot{#1: #2}%
 }
 
 \newcommand{\half}{\sfrac{1}{2}}
@@ -104,44 +104,44 @@
 \newcommand{\third}{\sfrac{1}{3}}
 
 \newcommand{\temp}[1]{%
-    $#1^\circ$F}
+$#1^\circ$F}
 %% Optional argument is the width of the graphic, default = 1in
 \newcommand{\showit}[3][1in]{%
-    \begin{center}
-        \bigskip
-            \includegraphics[width=#1]{#2}%
-            \par
-            \medskip
-            \emph{#3}
-            \par
-        \end{center}%
-    }
+\begin{center}
+    \bigskip
+    \includegraphics[width=#1]{#2}%
+    \par
+    \medskip
+    \emph{#3}
+    \par
+\end{center}%
+}
 
 %% Optional argument for a  heading within the ingredients section
 \newcommand{\ingredients}[1][]{%
-    \if###1##%
-        {\color{OliveGreen}\Large\textbf{Ingredients}}%
-    \else
-        \emph{#1}%
-    \fi
+\if###1##%
+{\color{OliveGreen}\Large\textbf{Ingredients}}%
+\else
+\emph{#1}%
+\fi
 }
 
 %% Use \obeylines to minimize markup
 \newenvironment{ingreds}{%
-    \parindent0pt
-    \noindent
-    \ingredients
-    \par
-    \smallskip
-    \begin{multicols}{2}
+\parindent0pt
+\noindent
+\ingredients
+\par
+\smallskip
+\begin{multicols}{2}
     \leftskip1em
     \rightskip0pt plus 3em
     \parskip=0.25em
     \obeylines
     \everypar={\hangindent2em}
-}{%
-    \end{multicols}%
-    \medskip
+    }{%
+\end{multicols}%
+\medskip
 }
 
 \newcounter{stepnum}
@@ -149,53 +149,53 @@
 %% Optional argument for an italicized pre-step
 %% Also use obeylines to minimize markup here as well
 \newenvironment{method}[1][]{%
-    \setcounter{stepnum}{0}
-    \noindent
-    {\color{MidnightBlue}\Large\textbf{Instructions}}%
-    \par
-    \smallskip
-    \if###1##%
-    \else
-        \noindent
-        \emph{#1}
-        \par
-    \fi
-    \begingroup
-    \parindent0pt
-    \parskip0.25em
-        \leftskip2em
-    \everypar={\llap{\stepcounter{stepnum}\hbox to2em{\thestepnum.\hfill}}}
+\setcounter{stepnum}{0}
+\noindent
+{\color{MidnightBlue}\Large\textbf{Instructions}}%
+\par
+\smallskip
+\if###1##%
+\else
+\noindent
+\emph{#1}
+\par
+\fi
+\begingroup
+\parindent0pt
+\parskip0.25em
+\leftskip2em
+\everypar={\llap{\stepcounter{stepnum}\hbox to2em{\thestepnum.\hfill}}}
 }{%
-    \par
-    \endgroup}
+\par
+\endgroup}
 
 \newenvironment{method*}[2][]{%
-   	\setcounter{stepnum}{0}
-   	\noindent
-   	{\color{MidnightBlue}\Large\textbf{Instructions: #2}}%
-   	\par
-   	\smallskip
-   	\if###1##%
-   	\else
-   	\noindent
-	\emph{#1}
-	\par
-   	\fi
-   	\begingroup
-   	\parindent0pt
-   	\parskip0.25em
-   	\leftskip2em
-   	\everypar={\llap{\stepcounter{stepnum}\hbox to2em{\thestepnum.\hfill}}}
+\setcounter{stepnum}{0}
+\noindent
+{\color{MidnightBlue}\Large\textbf{Instructions: #2}}%
+\par
+\smallskip
+\if###1##%
+\else
+\noindent
+\emph{#1}
+\par
+\fi
+\begingroup
+\parindent0pt
+\parskip0.25em
+\leftskip2em
+\everypar={\llap{\stepcounter{stepnum}\hbox to2em{\thestepnum.\hfill}}}
 }{%
-   	\par
-   	\endgroup}
+\par
+\endgroup}
 
 \newenvironment{notes}{%
-    \vfill
-    \noindent
-    {\color{RedOrange}\large\textbf{Notes}}\\
-    \small
-    \parindent0pt
+\vfill
+\noindent
+{\color{RedOrange}\large\textbf{Notes}}\\
+\small
+\parindent0pt
 }{\vspace{0.25in}}
 
 % for printing a physical copy
@@ -235,11 +235,11 @@
 
 \section*{Symbols}
 \begin{tabular}{c p{0.9\textwidth}}
-	\ve & Vegetarian \\
-	\almostve & ``Almost'' Vegetarian - can be easily adapted by leaving out ingredients or using fake meat products \\
-	\vg & Vegan \\
-	\gf & Gluten Free \\
-	\df & Dairy Free
+    \ve & Vegetarian \\
+    \almostve & ``Almost'' Vegetarian - can be easily adapted by leaving out ingredients or using fake meat products \\
+    \vg & Vegan \\
+    \gf & Gluten Free \\
+    \df & Dairy Free
 \end{tabular}
 
 \newpage
@@ -260,29 +260,29 @@
 \cooktime[Baking time]{1 hour 10 minutes}
 
 \begin{ingreds}
-	1 cup granulated sugar
-	1 stick unsalted butter, room temperature
-	2 large eggs
-	3 ripe bananas (or frozen and thawed)
-	1 tablespoon milk
-	1 teaspoon ground cinnamon
-	2 cups all-purpose flour
-	1 teaspoon baking powder
-	1 teaspoon baking soda
-	1 teaspoon salt
-	\third{} cup chocolate chips (optional)
+    1 cup granulated sugar
+    1 stick unsalted butter, room temperature
+    2 large eggs
+    3 ripe bananas (or frozen and thawed)
+    1 tablespoon milk
+    1 teaspoon ground cinnamon
+    2 cups all-purpose flour
+    1 teaspoon baking powder
+    1 teaspoon baking soda
+    1 teaspoon salt
+    \third{} cup chocolate chips (optional)
 \end{ingreds}
 
 \begin{method}[Preheat oven to \temp{325}. Butter a 9 x 5 x 3 inch loaf pan.]
-	Cream the sugar and butter in a large mixing bowl until light and fluffy. Add the eggs one at a time, beating well after each addition.
+    Cream the sugar and butter in a large mixing bowl until light and fluffy. Add the eggs one at a time, beating well after each addition.
 
-	In a small bowl, mash the bananas with a fork. Mix in the milk and cinnamon. In another bowl, mix together the flour, baking powder, baking soda and salt.
+    In a small bowl, mash the bananas with a fork. Mix in the milk and cinnamon. In another bowl, mix together the flour, baking powder, baking soda and salt.
 
-	Add the banana mixture to the creamed mixture and stir until combined. Add dry ingredients, mixing just until flour disappears. Add chocolate chips now, if desired, and mix in.
+    Add the banana mixture to the creamed mixture and stir until combined. Add dry ingredients, mixing just until flour disappears. Add chocolate chips now, if desired, and mix in.
 
-	Pour batter into prepared pan and bake 1 hour to 1 hour 10 minutes, until a toothpick inserted in the center comes out clean.
+    Pour batter into prepared pan and bake 1 hour to 1 hour 10 minutes, until a toothpick inserted in the center comes out clean.
 
-	Set aside to cool on a rack for 15 minutes. Cool completely before slicing.
+    Set aside to cool on a rack for 15 minutes. Cool completely before slicing.
 \end{method}
 
 
@@ -294,16 +294,16 @@
 \preptime{5 minutes}
 
 \begin{ingreds}
-	2 cups vanilla almond or oat milk
-	2 teaspoons black chia seeds
-	2 ripe banana, peeled
-	\third{} cup creamy peanut butter
-	2 tablespoons honey
-	1 cup oats (optional)
+    2 cups vanilla almond or oat milk
+    2 teaspoons black chia seeds
+    2 ripe banana, peeled
+    \third{} cup creamy peanut butter
+    2 tablespoons honey
+    1 cup oats (optional)
 \end{ingreds}
 
 \begin{method}
-	Add ingredients to blender and blend until smooth.
+    Add ingredients to blender and blend until smooth.
 \end{method}
 
 % --------------------------------------------------------------------------
@@ -343,22 +343,22 @@
 \preptime{25 minutes}
 \cooktime{25 Minutes}
 \begin{ingreds}
-	1 large chicken breast
-	1 package (8 oz) cream cheese, softened
-	1 block (8 oz) Monterey Jack, shredded, divided
-	\quarter{} cup Frank's Buffalo Hot Sauce
-	\half{} cup ranch dressing
+    1 large chicken breast
+    1 package (8 oz) cream cheese, softened
+    1 block (8 oz) Monterey Jack, shredded, divided
+    \quarter{} cup Frank's Buffalo Hot Sauce
+    \half{} cup ranch dressing
 \end{ingreds}
 \begin{method}[Preheat oven to \temp{325}]
-	Cook chicken by boiling in salted water for approximately 20 minutes until cooked. Shred chicken.
+    Cook chicken by boiling in salted water for approximately 20 minutes until cooked. Shred chicken.
 
-	Combine cream cheese, hot sauce, ranch dressing, and half of the shredded cheese.
+    Combine cream cheese, hot sauce, ranch dressing, and half of the shredded cheese.
 
-	Add shredded chicken and mix.
+    Add shredded chicken and mix.
 
-	Spoon into a 2-quart casserole and top with remaining cheese.
+    Spoon into a 2-quart casserole and top with remaining cheese.
 
-	Bake for 20-25 minutes or until bubbling.
+    Bake for 20-25 minutes or until bubbling.
 \end{method}
 
 
@@ -527,7 +527,7 @@
     1 large egg
     2 cans (14.5 oz each) tomato sauce or jarred marinara sauce
     1 box (8-9 oz) no-boil lasagna noodles (about 12 noodles)
-    1 pound of mozzarella cheese, sliced \quarter{} inch thick
+    1 lb of mozzarella cheese, sliced \quarter{} inch thick
     Kosher salt
     Freshly ground black pepper
 \end{ingreds}
@@ -628,23 +628,23 @@
 \preptime{15 minutes}
 
 \begin{ingreds}
-	2 cups fresh basil leaves, packed
-	\half{} cup freshly Romano or Parmesan-Reggiano cheese (about 2 ounces)
-	\half{} cup extra virgin olive oil
-	\third{} cup pine nuts
-	3 garlic cloves, minced (about 3 teaspoons)
-	\quarter{} teaspoon salt
-	\sfrac{1}{8} teaspoon freshly ground black pepper
+    2 cups fresh basil leaves, packed
+    \half{} cup freshly Romano or Parmesan-Reggiano cheese (about 2 ounces)
+    \half{} cup extra virgin olive oil
+    \third{} cup pine nuts
+    3 garlic cloves, minced (about 3 teaspoons)
+    \quarter{} teaspoon salt
+    \sfrac{1}{8} teaspoon freshly ground black pepper
 \end{ingreds}
 
 \begin{method}
-	Place the basil leaves and pine nuts into the bowl of a food processor and pulse a several times.
+    Place the basil leaves and pine nuts into the bowl of a food processor and pulse a several times.
 
-	Add the garlic and Parmesan or Romano cheese and pulse several times more. Scrape down the sides of the food processor with a rubber spatula.
+    Add the garlic and Parmesan or Romano cheese and pulse several times more. Scrape down the sides of the food processor with a rubber spatula.
 
-	While the food processor is running, slowly add the olive oil in a steady small stream. Adding the olive oil slowly, while the processor is running, will help it emulsify and help keep the olive oil from separating. Occasionally stop to scrape down the sides of the food processor.
+    While the food processor is running, slowly add the olive oil in a steady small stream. Adding the olive oil slowly, while the processor is running, will help it emulsify and help keep the olive oil from separating. Occasionally stop to scrape down the sides of the food processor.
 
-	Stir in salt and freshly ground black pepper, add more to taste. If pesto is too bitter, add a small amount of white sugar.
+    Stir in salt and freshly ground black pepper, add more to taste. If pesto is too bitter, add a small amount of white sugar.
 \end{method}
 
 \begin{notes}
@@ -732,38 +732,38 @@
 
 
 \begin{ingreds}
-	12 oz of linguine
-	4 tablespoons of sesame oil
-	\half{} cup green onion, chopped
-	1 cup finely shredded carrot
-	2 cups frozen stir fry veggies
-	3 tablespoons fresh minced garlic
-	\half{} tablespoon ground ginger or 1 tablespoon fresh ginger
-	\quarter{} cup honey
-	\quarter{} cup creamy peanut butter
-	\quarter{} cup soy sauce
-	3 tablespoons rice wine vinegar
-	\half{} tablespoon chili-garlic sauce
+    12 oz of linguine
+    4 tablespoons of sesame oil
+    \half{} cup green onion, chopped
+    1 cup finely shredded carrot
+    2 cups frozen stir fry veggies
+    3 tablespoons fresh minced garlic
+    \half{} tablespoon ground ginger or 1 tablespoon fresh ginger
+    \quarter{} cup honey
+    \quarter{} cup creamy peanut butter
+    \quarter{} cup soy sauce
+    3 tablespoons rice wine vinegar
+    \half{} tablespoon chili-garlic sauce
 \end{ingreds}
 
 \begin{method}
-	Cook pasta in a large pot of salted water according to package directions.
-	Drain and return to pot.
+    Cook pasta in a large pot of salted water according to package directions.
+    Drain and return to pot.
 
-	Add 2 tablespoons sesame oil and toss to coat.
-	Set aside.
+    Add 2 tablespoons sesame oil and toss to coat.
+    Set aside.
 
-	Heat remaining 2 tablespoons sesame oil in heavy pot over medium-high heat.
-	Add green onions, carrots, stir-fry veggies, garlic and ginger.
-	Saute until vegetables soften, about 4 minutes.
+    Heat remaining 2 tablespoons sesame oil in heavy pot over medium-high heat.
+    Add green onions, carrots, stir-fry veggies, garlic and ginger.
+    Saute until vegetables soften, about 4 minutes.
 
-	Add honey, peanut butter, soy sauce, vinegar and chili-garlic sauce and mix well.
-	Simmer sauce 2 minutes.
+    Add honey, peanut butter, soy sauce, vinegar and chili-garlic sauce and mix well.
+    Simmer sauce 2 minutes.
 
-	Pour sauce over pasta and toss well.
-	Transfer to platter and serve warm.
+    Pour sauce over pasta and toss well.
+    Transfer to platter and serve warm.
 
-	Garnish with additional green onions and sesame seeds, if desired.
+    Garnish with additional green onions and sesame seeds, if desired.
 \end{method}
 
 
@@ -777,8 +777,8 @@
 
 \begin{ingreds}
     \ingredients[Filling]
-    1 head cabbage, about 2 pounds
-     2 pounds ground beef
+    1 head cabbage, about 2 lbs
+    2 lbs ground beef
     1 teaspoon salt
     \half{} teaspoon pepper
     2 large eggs
@@ -801,13 +801,13 @@
 \begin{method}[Preheat oven to \temp{350}]
     Shred the cabbage by cutting in half, removing the stem and core, and the chopping lengthwise in small strips. Rinse, pat dry and set aside.
 
-   To make the sauce: Cook onions with oil in a saucepan for a few minutes, then add the tomatoes, tomato paste, salt and pepper to taste, onions, ketchup, the juice of one lemon, brown sugar, and raisins. Bring to a boil and let simmer for 15 minutes, covered.
+    To make the sauce: Cook onions with oil in a saucepan for a few minutes, then add the tomatoes, tomato paste, salt and pepper to taste, onions, ketchup, the juice of one lemon, brown sugar, and raisins. Bring to a boil and let simmer for 15 minutes, covered.
 
-   While sauce is simmering: In a large bowl, mix the ground beef, salt, pepper, eggs, rice, ketchup, and chopped onion. Form into approximately 24 meatballs and place in the bottom of two baking dishes. Surround with shredded cabbage.
+    While sauce is simmering: In a large bowl, mix the ground beef, salt, pepper, eggs, rice, ketchup, and chopped onion. Form into approximately 24 meatballs and place in the bottom of two baking dishes. Surround with shredded cabbage.
 
-   When sauce is complete, pour over both dishes evenly, mixing slightly to coat.
+    When sauce is complete, pour over both dishes evenly, mixing slightly to coat.
 
-   Cover with foil and bake for one and a half hours. Uncover and taste for seasoning, adding additional lemon juice if necessary or water if too dry. Bake uncovered for an additional half hour and serve.
+    Cover with foil and bake for one and a half hours. Uncover and taste for seasoning, adding additional lemon juice if necessary or water if too dry. Bake uncovered for an additional half hour and serve.
 \end{method}
 
 \begin{notes}
@@ -833,9 +833,9 @@
     \textbf{Prepare the Roast the Night Before}. Slather the roast with the olive oil on all sides, then season the roast with the salt, garlic, and black pepper. Place the roast into a large freezer bag; seal the bag and place it into a bowl in the fridge.
 
     1-2 hours before you want to cook the eye of round roast, remove it from the plastic bag and let it
-rest on the counter, uncovered.
+    rest on the counter, uncovered.
 
-   \emph{Preheat oven to \temp{450}.}
+    \emph{Preheat oven to \temp{450}.}
 
     Place the prepared roast into a greased 12-inch cast iron skillet or roasting pan, then into the oven on the center rack. Roast the meat, uncovered, for 20-25 minutes or until very nicely browned all over the top and bottom.
 
@@ -854,7 +854,7 @@ rest on the counter, uncovered.
 \cooktime{60 minutes + rest}
 
 \begin{ingreds}
-    4-5 pound pork loin roast trimmed of skin and fat
+    4-5 lbs pork loin roast trimmed of skin and fat
     1\half{} tablespoons olive oil divided
     \half{} cup low sodium beef stock or chicken stock/broth
     \half{} cup water
@@ -899,7 +899,7 @@ rest on the counter, uncovered.
 \end{method}
 
 \begin{notes}
-Use skinless, boneless pork, trimmed of excess fat to avoid fat melting into our braising liquid/sauce.
+    Use skinless, boneless pork, trimmed of excess fat to avoid fat melting into our braising liquid/sauce.
 \end{notes}
 
 \recipe{Sausage and Gnocchi Soup}
@@ -984,7 +984,7 @@ Use skinless, boneless pork, trimmed of excess fat to avoid fat melting into our
 \end{method}
 
 \begin{notes}
-If using chicken breasts instead of rotisserie chicken, boiling for 15-20 minutes with salt, rosemary, and thyme is a good and simple method of cooking.
+    If using chicken breasts instead of rotisserie chicken, boiling for 15-20 minutes with salt, rosemary, and thyme is a good and simple method of cooking.
 \end{notes}
 
 \recipe{Chicken Involtini with Proscuitto and Basil}
@@ -1027,56 +1027,56 @@ If using chicken breasts instead of rotisserie chicken, boiling for 15-20 minute
 \preptime{15 minutes}
 \cooktime{45 minutes}
 \begin{ingreds}
-	\ingredients[For the Sauce]
-	2 tablespoons olive oil
-	2 tablespoons ghee
-	1 large onion, chopped
-	1\half{} tablespoons garlic, minced
-	1 tablespoon ginger, finely grated
-	1\quarter{} teaspoons ground cumin
-	1\half{} teaspoons garam masala
-	1 teaspoon ground coriander
-	1 can (14 oz) crushed tomatoes
-	1 teaspoon Indian red chili powder
-	1\quarter{} teaspoons salt
-	1 cup of heavy cream
-	1 tablespoon sugar
-	\half{} teaspoon kasoori methi or dried fenugreek leaves \\(optional)\\
-	\ingredients[For the Chicken Marinade]
-	28 oz boneless, skinless chicken thighs or breasts, cut into bite size pieces
-	\half{} cup plain yogurt
-	1 \half{} tablespoons minced garlic
-	1 tablespoon ginger, finely grated
-	2 teaspoons garam masala
-	1 teaspoon turmeric
-	1 teaspoon Indian red chili powder
-	1 teaspoon salt
+    \ingredients[For the Sauce]
+    2 tablespoons olive oil
+    2 tablespoons ghee
+    1 large onion, chopped
+    1\half{} tablespoons garlic, minced
+    1 tablespoon ginger, finely grated
+    1\quarter{} teaspoons ground cumin
+    1\half{} teaspoons garam masala
+    1 teaspoon ground coriander
+    1 can (14 oz) crushed tomatoes
+    1 teaspoon Indian red chili powder
+    1\quarter{} teaspoons salt
+    1 cup of heavy cream
+    1 tablespoon sugar
+    \half{} teaspoon kasoori methi or dried fenugreek leaves \\(optional)\\
+    \ingredients[For the Chicken Marinade]
+    28 oz boneless, skinless chicken thighs or breasts, cut into bite size pieces
+    \half{} cup plain yogurt
+    1 \half{} tablespoons minced garlic
+    1 tablespoon ginger, finely grated
+    2 teaspoons garam masala
+    1 teaspoon turmeric
+    1 teaspoon Indian red chili powder
+    1 teaspoon salt
 \end{ingreds}
 
 \begin{method}
-	In a bowl, combine chicken with all of the ingredients for the chicken marinade; let marinate for at least 30 minutes and up to overnight.
+    In a bowl, combine chicken with all of the ingredients for the chicken marinade; let marinate for at least 30 minutes and up to overnight.
 
-	Heat oil in a large skillet or pot over medium-high heat. When sizzling, add chicken pieces in batches of two or three, making sure not to crowd the pan. Fry until browned for only 3 minutes on each side. Set aside and keep warm. (You will finish cooking the chicken in the sauce.)
+    Heat oil in a large skillet or pot over medium-high heat. When sizzling, add chicken pieces in batches of two or three, making sure not to crowd the pan. Fry until browned for only 3 minutes on each side. Set aside and keep warm. (You will finish cooking the chicken in the sauce.)
 
-	Heat butter or ghee in the same pan. Fry the onions until they start to sweat (about 6 minutes) while scraping up any browned bits stuck on the bottom of the pan.
+    Heat butter or ghee in the same pan. Fry the onions until they start to sweat (about 6 minutes) while scraping up any browned bits stuck on the bottom of the pan.
 
-	Add garlic and ginger and saut\'{e} for 1 minute until fragrant, then add ground coriander, cumin and garam masala. Let cook for about 20 seconds until fragrant, while stirring occasionally.
+    Add garlic and ginger and saut\'{e} for 1 minute until fragrant, then add ground coriander, cumin and garam masala. Let cook for about 20 seconds until fragrant, while stirring occasionally.
 
-	Add crushed tomatoes, chili powder and salt. Let simmer for about 10-15 minutes, stirring occasionally until sauce thickens and becomes a deep brown red color.
+    Add crushed tomatoes, chili powder and salt. Let simmer for about 10-15 minutes, stirring occasionally until sauce thickens and becomes a deep brown red color.
 
-	Remove from heat, scoop mixture into a blender and blend until smooth. You may need to add a couple tablespoons of water to help it blend (up to 1/4 cup). Work in batches depending on the size of your blender.
+    Remove from heat, scoop mixture into a blender and blend until smooth. You may need to add a couple tablespoons of water to help it blend (up to 1/4 cup). Work in batches depending on the size of your blender.
 
-	Pour the pur\'{e}ed sauce back into the pan. Stir the cream, sugar and crushed kasoori methi (or fenugreek leaves) through the sauce. Add the chicken with juices back into the pan and cook for an additional 8-10 minutes until chicken is cooked through and the sauce is thick and bubbling.
+    Pour the pur\'{e}ed sauce back into the pan. Stir the cream, sugar and crushed kasoori methi (or fenugreek leaves) through the sauce. Add the chicken with juices back into the pan and cook for an additional 8-10 minutes until chicken is cooked through and the sauce is thick and bubbling.
 
-	Garnish with chopped cilantro (optional) and serve.
+    Garnish with chopped cilantro (optional) and serve.
 \end{method}
 
 \begin{notes}
     Substitutions:
 
-   	\half{} teaspoon Cayenne for every 1 teaspoon Indian red chili powder
+    \half{} teaspoon Cayenne for every 1 teaspoon Indian red chili powder
 
-   	1 tbs butter + 1 tbs olive oil for 2 tbs of ghee
+    1 tbs butter + 1 tbs olive oil for 2 tbs of ghee
 \end{notes}
 
 
@@ -1161,23 +1161,23 @@ If using chicken breasts instead of rotisserie chicken, boiling for 15-20 minute
 \cooktime{40 minutes}
 
 \begin{ingreds}
-	1 package chicken thighs
-	\quarter{} cup balsamic vinegar
-	2 tablespoons olive oil
-	\quarter{} cup peppercorn mustard or country style dijon
-	2 teaspoons Worcestershire sauce
-	\half{} teaspoon dried thyme
-	Salt and pepper to test
+    1 package chicken thighs
+    \quarter{} cup balsamic vinegar
+    2 tablespoons olive oil
+    \quarter{} cup peppercorn mustard or country style dijon
+    2 teaspoons Worcestershire sauce
+    \half{} teaspoon dried thyme
+    Salt and pepper to test
 \end{ingreds}
 
 \begin{method}
-	Trim and discard excess fat from thighs.
+    Trim and discard excess fat from thighs.
 
-	Whisk together vinegar, oil, mustard, Worcestershire sauce. thyme, salt and pepper.
+    Whisk together vinegar, oil, mustard, Worcestershire sauce. thyme, salt and pepper.
 
-	Place thighs in marinade, cover, and refrigerate for 30 minutes, up to overnight.
+    Place thighs in marinade, cover, and refrigerate for 30 minutes, up to overnight.
 
-	Grill or broil for 25-35 minutes, or bake at \temp{375} for 40 minutes or until done.
+    Grill or broil for 25-35 minutes, or bake at \temp{375} for 40 minutes or until done.
 \end{method}
 
 \recipe[This Korean-inspired dish originally from \href{https://sorted.club/recipe/korean-fried-sweet-and-sour-chicken-with-sesame-sticky-rice/}{sorted club}.]{Sweet and Spicy Fried Chicken}
@@ -1238,36 +1238,36 @@ If using chicken breasts instead of rotisserie chicken, boiling for 15-20 minute
 \preptime{15 minutes}
 \cooktime[Slow cook time]{5 hours}
 \begin{ingreds}
-	1 lb. boneless skinless chicken breasts
-	1 can (15 oz) black beans, rinsed
-	1 cup frozen corn
-	2 bell peppers, chopped
-	1 white onion, chopped
-	1 can (15 oz) fire-roasted tomatoes
-	\quarter{} cup freshly chopped cilantro, plus more for garnish
-	3 cloves garlic, minced
-	1 tablespoon cumin
-	1 tablespoon chili powder
-	1 teaspoon kosher salt
-	2 cups low-sodium chicken broth
-	1 cup shredded Monterey jack
-	1 tablespoon extra-virgin olive oil
-	3 small corn tortillas, cut into strips
-	Sliced avocado, for serving
-	Sour cream, for serving
-	Lime wedges, for serving
+    1 lb. boneless skinless chicken breasts
+    1 can (15 oz) black beans, rinsed
+    1 cup frozen corn
+    2 bell peppers, chopped
+    1 white onion, chopped
+    1 can (15 oz) fire-roasted tomatoes
+    \quarter{} cup freshly chopped cilantro, plus more for garnish
+    3 cloves garlic, minced
+    1 tablespoon cumin
+    1 tablespoon chili powder
+    1 teaspoon kosher salt
+    2 cups low-sodium chicken broth
+    1 cup shredded Monterey jack
+    1 tablespoon extra-virgin olive oil
+    3 small corn tortillas, cut into strips
+    Sliced avocado, for serving
+    Sour cream, for serving
+    Lime wedges, for serving
 \end{ingreds}
 
 \begin{method}
-	In a large slow cooker, combine chicken, black beans, corn, peppers, onion, fire-roasted tomatoes, cilantro, garlic, cumin, chili powder, salt, and chicken broth.
+    In a large slow cooker, combine chicken, black beans, corn, peppers, onion, fire-roasted tomatoes, cilantro, garlic, cumin, chili powder, salt, and chicken broth.
 
-	Cover and cook on low until chicken is cooked and falling apart, 5 to 6 hours.
+    Cover and cook on low until chicken is cooked and falling apart, 5 to 6 hours.
 
-	Shred chicken with a fork, then top soup with Monterey Jack and cover to let melt, 5 minutes more.
+    Shred chicken with a fork, then top soup with Monterey Jack and cover to let melt, 5 minutes more.
 
-	Meanwhile, make tortilla crisps: In a large skillet over medium heat, heat oil. Add tortilla strips and cook until crispy and golden, 3 minutes. Transfer to a paper towel-lined plate and season with salt.
+    Meanwhile, make tortilla crisps: In a large skillet over medium heat, heat oil. Add tortilla strips and cook until crispy and golden, 3 minutes. Transfer to a paper towel-lined plate and season with salt.
 
-	Serve soup topped with tortilla crisps, avocado, sour cream, cilantro, and lime.
+    Serve soup topped with tortilla crisps, avocado, sour cream, cilantro, and lime.
 \end{method}
 
 \recipe{Loaf Pan Chicken Shawarma}
@@ -1313,94 +1313,94 @@ If using chicken breasts instead of rotisserie chicken, boiling for 15-20 minute
 \preptime{1 hour}
 
 \begin{ingreds}
-	1 pork shoulder, between 5 and 8 lbs
-	1 cup lager, IPA, or dry cider
-	3 Spanish white onions
-	1 red onion
-	4 avocados
-	5-6 Roma tomatoes
-	2 mangoes
-	2 jalape\~nos
-	5-8 limes
-	1 orange
-	6-8 cloves of garlic or equivalent in jarred garlic\footnote{jarlic}
-	\half{} head lettuce (optional)
-	Fresh cilantro
-	Cumin, chili powder, paprika, and adobo seasoning
-	Salt and pepper to taste
-	Small taco size tortillas
-	1 wedge Cotija cheese
-	Sour cream
+    1 pork shoulder, between 5 and 8 lbs
+    1 cup lager, IPA, or dry cider
+    3 Spanish white onions
+    1 red onion
+    4 avocados
+    5-6 Roma tomatoes
+    2 mangoes
+    2 jalape\~nos
+    5-8 limes
+    1 orange
+    6-8 cloves of garlic or equivalent in jarred garlic\footnote{jarlic}
+    \half{} head lettuce (optional)
+    Fresh cilantro
+    Cumin, chili powder, paprika, and adobo seasoning
+    Salt and pepper to taste
+    Small taco size tortillas
+    1 wedge Cotija cheese
+    Sour cream
 \end{ingreds}
 
 \begin{method*}{Carnitas}
-	Remove fat cap from pork shoulder, but do not remove any more fat. Cut up remaining meat into roughly 3-inch cubes.
+    Remove fat cap from pork shoulder, but do not remove any more fat. Cut up remaining meat into roughly 3-inch cubes.
 
-	Thoroughly coat meat in salt and pepper. Rub it in.
+    Thoroughly coat meat in salt and pepper. Rub it in.
 
-	Place meat into a crock pot.
+    Place meat into a crock pot.
 
-	Roughly dice 1 large Spanish onion
-	and mince 4-5 cloves garlic, add to crock pot
+    Roughly dice 1 large Spanish onion
+    and mince 4-5 cloves garlic, add to crock pot
 
-	Pour beer over meat.
+    Pour beer over meat.
 
-	Add seasonings: a big shake cumin (lets call it 7-9 dashes), medium shake chili powder, medium shake paprika, medium shake adobo if available.
+    Add seasonings: a big shake cumin (lets call it 7-9 dashes), medium shake chili powder, medium shake paprika, medium shake adobo if available.
 
-	Cut the orange in half and add the juice and flesh to the pot.
+    Cut the orange in half and add the juice and flesh to the pot.
 
-	Add the juice of two limes and the flesh of one of them to the pot.
+    Add the juice of two limes and the flesh of one of them to the pot.
 
-	Put the crock pot on low for a minimum of 6.5 hours, preferably up to 8.5. While that is cooking, prepare side dishes.
+    Put the crock pot on low for a minimum of 6.5 hours, preferably up to 8.5. While that is cooking, prepare side dishes.
 
-	After pork is cooked, place meat on a large cutting board or in a large bowl and pull apart with two forks.
+    After pork is cooked, place meat on a large cutting board or in a large bowl and pull apart with two forks.
 
-	Lay it out on a tinfoil sheet in (as close as possible to) one layer on a baking tray. Ladle some cooking liquid over it, add additional salt and pepper, and broil for 5-7 minutes. Remove, mix a bit, salt again, ladle again, broil again. Repeat until most of the meat is just barely browning.
+    Lay it out on a tinfoil sheet in (as close as possible to) one layer on a baking tray. Ladle some cooking liquid over it, add additional salt and pepper, and broil for 5-7 minutes. Remove, mix a bit, salt again, ladle again, broil again. Repeat until most of the meat is just barely browning.
 
-	Serve immediately.
+    Serve immediately.
 \end{method*}
 ~\\
 \begin{method*}{Guacamole}
-	Empty avocados into a bowl.
+    Empty avocados into a bowl.
 
-	Dice up somewhere between \threequarters{} and 1 whole white onion, add to bowl.
+    Dice up somewhere between \threequarters{} and 1 whole white onion, add to bowl.
 
-	Roughly mince a good handful of cilantro and add.
+    Roughly mince a good handful of cilantro and add.
 
-	Add either a half or whole jalepe\~no. Seeds can be removed or left in.
+    Add either a half or whole jalepe\~no. Seeds can be removed or left in.
 
-	Roughly mix with a fork.
+    Roughly mix with a fork.
 
-	Add the juice of at least two limes. Add more to taste.
+    Add the juice of at least two limes. Add more to taste.
 
-	Add a pinch of cumin and salt and pepper to taste, more salt than pepper. Frankly, a ton of salt. More than you think.
+    Add a pinch of cumin and salt and pepper to taste, more salt than pepper. Frankly, a ton of salt. More than you think.
 
-	Mix again gently, tasting and salting to desired consistency and flavor
+    Mix again gently, tasting and salting to desired consistency and flavor
 
-	Too much salt can be amended with either another avocado or some more cilantro.
+    Too much salt can be amended with either another avocado or some more cilantro.
 
-	Cover and fridge, making sure to press plastic wrap/foil down on top.
+    Cover and fridge, making sure to press plastic wrap/foil down on top.
 \end{method*}
 ~\\
 \begin{method*}{Mango Salsa}
-	In a medium bowl, combine : 4-5 diced roma tomatoes, \half{} diced white onion, \half{} diced red onion,
-	1-2 cloves minced garlic, one \half{} or 1 diced jalape\~no, 2 finely diced mangoes.
+    In a medium bowl, combine : 4-5 diced roma tomatoes, \half{} diced white onion, \half{} diced red onion,
+    1-2 cloves minced garlic, one \half{} or 1 diced jalape\~no, 2 finely diced mangoes.
 
-	Add a handful of chopped cilantro, the juice of two limes, and (optionally) a splash or orange, pineapple, or other fruit juice.
+    Add a handful of chopped cilantro, the juice of two limes, and (optionally) a splash or orange, pineapple, or other fruit juice.
 
-	Finish off with a pinch of cumin, a	pinch of paprika, and salt and pepper to taste.
+    Finish off with a pinch of cumin, a	pinch of paprika, and salt and pepper to taste.
 \end{method*}
 ~\\
 \begin{method*}{Crema}
-	Combine 4 large spoonfuls of sour creme, the juice of one lime, and a pinch of paprika.
+    Combine 4 large spoonfuls of sour creme, the juice of one lime, and a pinch of paprika.
 
-	Mix well and serve.
+    Mix well and serve.
 \end{method*}
 
 \begin{notes}
-	 Serve ONLY on slightly-toasted tiny tortillas from the big bag. Pair with simple, lime/sugar/tequila margaritas and trashy television. Share with loved ones.
+    Serve ONLY on slightly-toasted tiny tortillas from the big bag. Pair with simple, lime/sugar/tequila margaritas and trashy television. Share with loved ones.
 
-	 For beer choice: lager is the standard for carnitas, IPA is more fruity, and cider is great for a little sweet kick. In Pete's experience, a dry cider is best.
+    For beer choice: lager is the standard for carnitas, IPA is more fruity, and cider is great for a little sweet kick. In Pete's experience, a dry cider is best.
 \end{notes}
 
 \recipe[Originally from \href{https://www.inspiredtaste.net/37062/juicy-skillet-pork-chops/}{Inspired Taste}]{Juicy Skillet Pork Chops}
@@ -1412,38 +1412,38 @@ If using chicken breasts instead of rotisserie chicken, boiling for 15-20 minute
 \serves{6}
 
 \begin{ingreds}
-	\threequarters{} pound skinless, boneless chicken breasts
-	3 slices of bacon
-	2 cloves garlic, minced
-	1\half{} cups jarred salsa
-	1 can (16 oz) black beans
-	1 large red bell pepper, chopped
-	1 teaspoon ground cumin
-	\quarter{} teaspoon salt
-	\half{} cup sliced green onions
-	12 medium flour tortillas
-	1\half{} cups (6 oz) shredded Monterey Jack cheese
-	Shredded lettuce, sour cream, avocado slices, and chopped tomato for toppings.
+    \threequarters{} lbs skinless, boneless chicken breasts
+    3 slices of bacon
+    2 cloves garlic, minced
+    1\half{} cups jarred salsa
+    1 can (16 oz) black beans
+    1 large red bell pepper, chopped
+    1 teaspoon ground cumin
+    \quarter{} teaspoon salt
+    \half{} cup sliced green onions
+    12 medium flour tortillas
+    1\half{} cups (6 oz) shredded Monterey Jack cheese
+    Shredded lettuce, sour cream, avocado slices, and chopped tomato for toppings.
 \end{ingreds}
 
 \begin{method}[Preheat oven to \temp{350}]
-	Cut chicken into short, thin strips.
+    Cut chicken into short, thin strips.
 
-	Cook bacon in 10-inch skillet until crisp. Remove to paper towel; crumble.
+    Cook bacon in 10-inch skillet until crisp. Remove to paper towel; crumble.
 
-	Pour off all but 2 tablespoons bacon drippings. Cook and stir chicken and garlic in drippings until chicken is no longer pink.
+    Pour off all but 2 tablespoons bacon drippings. Cook and stir chicken and garlic in drippings until chicken is no longer pink.
 
-	Stir in \half{} cup of the salsa, beans (undrained), red pepper, cumin and salt. Simmer until thickened, 7 to 8 minutes, stirring occasionally.
+    Stir in \half{} cup of the salsa, beans (undrained), red pepper, cumin and salt. Simmer until thickened, 7 to 8 minutes, stirring occasionally.
 
-	Stir in green onions and reserved bacon.
+    Stir in green onions and reserved bacon.
 
-	Spoon heaping \quarter{} cup mixture down center of each tortilla; top with 1 tablespoon cheese.
+    Spoon heaping \quarter{} cup mixture down center of each tortilla; top with 1 tablespoon cheese.
 
-	Roll up; place seam side down in lightly greased 13 x 9-inch baking dish.
+    Roll up; place seam side down in lightly greased 13 x 9-inch baking dish.
 
-	 Spoon remaining 1 cups salsa evenly over enchiladas. Bake at \temp{350}. 15 minutes. Top with remaining cheese; return to oven about 3 minutes.
+    Spoon remaining 1 cups salsa evenly over enchiladas. Bake at \temp{350}. 15 minutes. Top with remaining cheese; return to oven about 3 minutes.
 
-	 Top as desired and serve.
+    Top as desired and serve.
 \end{method}
 
 \recipe{White Bean Chicken Chili}
@@ -1460,31 +1460,31 @@ If using chicken breasts instead of rotisserie chicken, boiling for 15-20 minute
 
 \begin{ingreds}
 
-	2 pounds ground chuck
-	3 cloves garlic, minced
-	1 can (12-14 oz) tomato sauce
-	1 can (10 oz) Ro-tel (diced tomatoes and chilies)
-	\half{} teaspoon salt
-	1 teaspoon ground oregano
-	1 tablespoon ground cumin
-	2 tablespoon chili powder (more to taste)
-	1 can (14 oz) kidney beans, drained and rinsed
-	1 can (14 oz) pinto beans, drained and rinsed
-	\quarter{} cup masa (corn flour) or regular corn meal
-	\half{} cup warm water
-	Individual bags of Fritos
-	Grated sharp cheddar cheese
-	Diced red onion (optional)
+    2 lbs ground chuck
+    3 cloves garlic, minced
+    1 can (12-14 oz) tomato sauce
+    1 can (10 oz) Ro-tel (diced tomatoes and chilies)
+    \half{} teaspoon salt
+    1 teaspoon ground oregano
+    1 tablespoon ground cumin
+    2 tablespoon chili powder (more to taste)
+    1 can (14 oz) kidney beans, drained and rinsed
+    1 can (14 oz) pinto beans, drained and rinsed
+    \quarter{} cup masa (corn flour) or regular corn meal
+    \half{} cup warm water
+    Individual bags of Fritos
+    Grated sharp cheddar cheese
+    Diced red onion (optional)
 \end{ingreds}
 
 \begin{method}
-	Brown ground chuck with garlic in a pot over medium-high heat. Add tomato sauce, Rotel, salt, oregano, cumin, and chili powder. Cover and reduce heat to low. Simmer for 30 minutes.
+    Brown ground chuck with garlic in a pot over medium-high heat. Add tomato sauce, Rotel, salt, oregano, cumin, and chili powder. Cover and reduce heat to low. Simmer for 30 minutes.
 
-	Add drained and rinsed beans. Stir to combine, then cover and simmer for another 20 minutes.
+    Add drained and rinsed beans. Stir to combine, then cover and simmer for another 20 minutes.
 
-	Mix masa with water, then add to the chili. Stir to combine and simmer for a final 10 to 15 minutes. Set aside.
+    Mix masa with water, then add to the chili. Stir to combine and simmer for a final 10 to 15 minutes. Set aside.
 
-	Serve by slicing the Frito bags open lengthwise. Pile in chili and cheese, and diced onion if using. Serve immediately with plastic forks.
+    Serve by slicing the Frito bags open lengthwise. Pile in chili and cheese, and diced onion if using. Serve immediately with plastic forks.
 \end{method}
 
 % --------------------------------------------------------------------------
@@ -1556,7 +1556,7 @@ If using chicken breasts instead of rotisserie chicken, boiling for 15-20 minute
     In a medium saucepan over high heat, combine the cranberries, sugar, orange zest and juice, cardamom and salt and bring to a boil.
 
     Reduce the heat to maintain a simmer and cook, stirring occasionally and adjusting the heat as needed, until the berries burst and the
-sauce thickens, 12 to 15 minutes.
+    sauce thickens, 12 to 15 minutes.
 
     Remove from the heat and let cool. Serve at room temperature or refrigerate until needed.
 \end{method}
@@ -1569,29 +1569,29 @@ sauce thickens, 12 to 15 minutes.
 \diet{\ve\gf}
 
 \begin{ingreds}
-	3 pounds red potatoes, rinsed and scrubbed clean, cut into 1 inch pieces
-	1 cup mayonnaise
-	1 tablespoon spicy mustard
-	1 teaspoon salt
-	\half{} teaspoon black pepper
-	\threequarters{} teaspoon dried dill
-	\half{} teaspoon garlic powder
-	1 cup fully cooked chopped bacon pieces
-	\half{} cup sliced green onions (about 2 to 3 green onions)
-	\threequarters{} cup sliced celery (about 2 to 3 stalks)
+    3 lbs red potatoes, rinsed and scrubbed clean, cut into 1 inch pieces
+    1 cup mayonnaise
+    1 tablespoon spicy mustard
+    1 teaspoon salt
+    \half{} teaspoon black pepper
+    \threequarters{} teaspoon dried dill
+    \half{} teaspoon garlic powder
+    1 cup fully cooked chopped bacon pieces
+    \half{} cup sliced green onions (about 2 to 3 green onions)
+    \threequarters{} cup sliced celery (about 2 to 3 stalks)
 \end{ingreds}
 
 \begin{method}
-	Place potatoes in a large pot and cover with cold water.  Bring to a boil over high heat, then reduce heat to medium to maintain a gentle boil.  Cook until fork-tender (but not falling apart), about 12 to 15 minutes.
+    Place potatoes in a large pot and cover with cold water.  Bring to a boil over high heat, then reduce heat to medium to maintain a gentle boil.  Cook until fork-tender (but not falling apart), about 12 to 15 minutes.
 
-	Drain potatoes in a colander and allow to cool while you’re preparing the other ingredients.
+    Drain potatoes in a colander and allow to cool while you’re preparing the other ingredients.
 
-	Stir together mayonnaise, mustard, salt, pepper, dill and garlic powder in a large bowl.
+    Stir together mayonnaise, mustard, salt, pepper, dill and garlic powder in a large bowl.
 
-	Transfer drained and cooled potatoes to the bowl with the mayonnaise mixture and gently stir to coat potatoes evenly.  Add bacon, green onions and celery and gently stir again to incorporate.
-	Season with additional salt and pepper, if desired.
+    Transfer drained and cooled potatoes to the bowl with the mayonnaise mixture and gently stir to coat potatoes evenly.  Add bacon, green onions and celery and gently stir again to incorporate.
+    Season with additional salt and pepper, if desired.
 
-	Cover and refrigerate at least 1 hour before serving.
+    Cover and refrigerate at least 1 hour before serving.
 \end{method}
 
 \recipe[Great during the holidays or with Gumbo]{Candied Walnut Gorgonzola Salad}
@@ -1601,22 +1601,22 @@ sauce thickens, 12 to 15 minutes.
 \preptime{15 minutes}
 
 \begin{ingreds}
-	\half{} cup walnut halves
-	\quarter{} cup sugar
-	3 cups mixed greens
-	\half{} cup crumbled Gorgonzola cheese
-	\half{} cup dried cranberries
-	1 tablespoon raspberry vinaigrette
-	1 tablespoon white vinegar
-	1 tablespoon olive oil
+    \half{} cup walnut halves
+    \quarter{} cup sugar
+    3 cups mixed greens
+    \half{} cup crumbled Gorgonzola cheese
+    \half{} cup dried cranberries
+    1 tablespoon raspberry vinaigrette
+    1 tablespoon white vinegar
+    1 tablespoon olive oil
 \end{ingreds}
 
 \begin{method}
-	Place walnuts and sugar in a skillet over medium heat, stirring constantly until the sugar dissolves into a light brown liquid and coats the walnuts.
+    Place walnuts and sugar in a skillet over medium heat, stirring constantly until the sugar dissolves into a light brown liquid and coats the walnuts.
 
-	Remove walnuts from skillet and spread on a sheet of aluminum foil to cool.
+    Remove walnuts from skillet and spread on a sheet of aluminum foil to cool.
 
-	Place the mixed greens, cranberries, and cheese in a large salad bowl. Toss gently with the vinaigrette, vinegar, and olive oil. Add candied walnuts and toss again.
+    Place the mixed greens, cranberries, and cheese in a large salad bowl. Toss gently with the vinaigrette, vinegar, and olive oil. Add candied walnuts and toss again.
 \end{method}
 
 \category{Sauces}
@@ -1629,20 +1629,20 @@ sauce thickens, 12 to 15 minutes.
 \diet{\ve\gf}
 
 \begin{ingreds}
-	1 cup Greek whole milk yogurt
-	1 English cucumber, seeded, finely grated and drained
-	2 cloves garlic, finely minced
-	1 teaspoon lemon zest plus 1 tablespoon fresh lemon juice
-	2 tablespoons chopped fresh dill
-	Kosher salt and freshly cracked black pepper
+    1 cup Greek whole milk yogurt
+    1 English cucumber, seeded, finely grated and drained
+    2 cloves garlic, finely minced
+    1 teaspoon lemon zest plus 1 tablespoon fresh lemon juice
+    2 tablespoons chopped fresh dill
+    Kosher salt and freshly cracked black pepper
 \end{ingreds}
 
 \begin{method}
-	In a medium bowl, whisk together the yogurt, cucumber, garlic, lemon zest, lemon juice and dill. Season with salt and pepper. Chill.
+    In a medium bowl, whisk together the yogurt, cucumber, garlic, lemon zest, lemon juice and dill. Season with salt and pepper. Chill.
 \end{method}
 
 \begin{notes}
-	For some extra flavor, add some olive oil and some coarsely chopped fresh mint.
+    For some extra flavor, add some olive oil and some coarsely chopped fresh mint.
 \end{notes}
 
 
@@ -1653,29 +1653,30 @@ sauce thickens, 12 to 15 minutes.
 \serves[Makes]{1\threequarters{} cups}
 
 \begin{ingreds}
-	1 cup mayonnaise
-	\quarter{} cup sweet pickle relish
-	\quarter{} cup ketchup
-	1 tablespoon white vinegar
-	1 tablespoon granulated sugar
-	2 tablespoons finely diced onion
-	\half{} teaspoon finely minced garlic (about 1 clove)
-	\quarter{} teaspoon kosher salt
-	\sfrac{1}{8} teaspoon ground black pepper
+    1 cup mayonnaise
+    \quarter{} cup sweet pickle relish
+    \quarter{} cup ketchup
+    1 tablespoon white vinegar
+    1 tablespoon granulated sugar
+    2 tablespoons finely diced onion
+    \half{} teaspoon finely minced garlic (about 1 clove)
+    \quarter{} teaspoon kosher salt
+    \sfrac{1}{8} teaspoon ground black pepper
 \end{ingreds}
 
 \begin{method}
-	Mix all ingredients together in a bowl or jar. Refrigerate for at least one hour to let flavors meld.
+    Mix all ingredients together in a bowl or jar. Refrigerate for at least one hour to let flavors meld.
 \end{method}
 
 \begin{notes}
-	Don't have sweet pickle relish? Use dill pickle relish or chopped up pickles.
+    Don't have sweet pickle relish? Use dill pickle relish or chopped up pickles.
 
-	Variations: add hot sauce, chili sauce, or horseradish. Or add 1 chopped hard boiled egg.
+    Variations: add hot sauce, chili sauce, or horseradish. Or add 1 chopped hard boiled egg.
 \end{notes}
 
 \recipe[Adapted from \href{https://therecipecritic.com/vegetable-stir-fry/}{The Recipe Critic}.]{Stir Fry Sauce}
 \index{Stir fry}
+\diet{\almostve}
 \preptime{5 minutes}
 \begin{ingreds}
     \quarter{} cup soy sauce
@@ -1691,11 +1692,6 @@ sauce thickens, 12 to 15 minutes.
 
     Add to the stir fry and cook until thickened.
 \end{method}
-
-
-\begin{notes}
-    Substitute vegetable broth for a vegetarian variant.
-\end{notes}
 
 \recipe{Turkey Gravy}
 \index{Turkey!gravy}
@@ -1749,15 +1745,15 @@ sauce thickens, 12 to 15 minutes.
     1\half{} cups M\&M candies, divided
 \end{ingreds}
 \begin{method}[Preheat oven to \temp{350}]
-In a large bowl, cream butter and shortening with brown sugar and vanilla until light and fluffy. Beat in egg.
+    In a large bowl, cream butter and shortening with brown sugar and vanilla until light and fluffy. Beat in egg.
 
-Stir flour, baking soda, and salt together in a separate bowl. Blend into egg mixture. Fold in 1 cup M\&Ms
+    Stir flour, baking soda, and salt together in a separate bowl. Blend into egg mixture. Fold in 1 cup M\&Ms
 
-Cover and refridgerate for easier handling.
+    Cover and refridgerate for easier handling.
 
-Shape dough into 2-inch balls. Place 4 inches apart on an ungreased baking sheet. Use remaining candies to decorate top of cookies.
+    Shape dough into 2-inch balls. Place 4 inches apart on an ungreased baking sheet. Use remaining candies to decorate top of cookies.
 
-Bake 15-20 minutes until golden. Cool 2 minutes. Gentle transfer to racks with large spatulla.
+    Bake 15-20 minutes until golden. Cool 2 minutes. Gentle transfer to racks with large spatulla.
 \end{method}
 
 \recipe[The ``Ultimate Chocolate Chip Cookie'' recipe from Crisco.]{Classic Chocolate Chip Cookies}
@@ -1768,26 +1764,26 @@ Bake 15-20 minutes until golden. Cool 2 minutes. Gentle transfer to racks with l
 \cooktime[Baking time]{13 minutes}
 
 \begin{ingreds}
-	\quarter{} cup Crisco Butter Flavor Shortening
-	1\quarter{} cups firmly packed light brown sugar
-	2 tablespoons milk
-	1 tablespoon vanilla extract
-	1 egg
-	2 cups all-purpose flour
-	1 teaspoon salt
-	\threequarters{} teaspoon baking soda
-	1 cup semi-sweet chocolate chips
-	1 cup coarsely chopped pecans (optional)
+    \quarter{} cup Crisco Butter Flavor Shortening
+    1\quarter{} cups firmly packed light brown sugar
+    2 tablespoons milk
+    1 tablespoon vanilla extract
+    1 egg
+    2 cups all-purpose flour
+    1 teaspoon salt
+    \threequarters{} teaspoon baking soda
+    1 cup semi-sweet chocolate chips
+    1 cup coarsely chopped pecans (optional)
 \end{ingreds}
 
 \begin{method}[Preheat oven to \temp{375}]
-	Beat shortening, brown sugar, milk, and vanilla in a large bowl with mixer on medium speed until well blended. Beat in egg.
+    Beat shortening, brown sugar, milk, and vanilla in a large bowl with mixer on medium speed until well blended. Beat in egg.
 
-	Stir flour, salt, and baking soda in medium bowl. Gradually beat into creamed mixture until just blended. Stir in chocolate chips and nuts (if desired).
+    Stir flour, salt, and baking soda in medium bowl. Gradually beat into creamed mixture until just blended. Stir in chocolate chips and nuts (if desired).
 
-	Drop by rounded measuring tablespoonfuls 3 inches apart on a baking sheet
+    Drop by rounded measuring tablespoonfuls 3 inches apart on a baking sheet
 
-	Bake 8 to 10 minutes for chewy cookies, or 11 to 13 minutes for crisp cookies. Cool 2 minutes. Remove to wire rack to cool completely.
+    Bake 8 to 10 minutes for chewy cookies, or 11 to 13 minutes for crisp cookies. Cool 2 minutes. Remove to wire rack to cool completely.
 \end{method}
 
 \recipe[Savory and sweet with just a little chew, these are a twist on the classic. Originally by \href{https://www.bonappetit.com/recipe/bas-best-chocolate-chip-cookies}{Bonn App\'{e}tit}.]{Brown Butter Chocolate Chip Cookies}
@@ -1889,7 +1885,7 @@ Bake 15-20 minutes until golden. Cool 2 minutes. Gentle transfer to racks with l
 \end{method}
 
 \begin{notes}
-	Combine this with the following recipe for an extra-special cake. Pour the ice cream directly out of the machine onto the cookie base and freeze for two hours before proceeding.
+    Combine this with the following recipe for an extra-special cake. Pour the ice cream directly out of the machine onto the cookie base and freeze for two hours before proceeding.
 \end{notes}
 
 \recipe[Modified from the recipe for frozen custard provided with our Cuisinart machine.]{Homemade Ice Cream}
@@ -1900,33 +1896,33 @@ Bake 15-20 minutes until golden. Cool 2 minutes. Gentle transfer to racks with l
 \diet{\ve}
 
 \begin{ingreds}
-	2 cups whole milk
-	2 cups heavy cream
-	1 cup granulated sugar, divided
-	Pinch of salt
-	5 large egg yolks
-	\columnbreak
-	\ingredients[For Chocolate]
-	\third{} cup cocoa powder
-	1 teaspoon vanilla extract
-	Shake of instant coffee powder (optional)
-	\ingredients[For Vanilla]
-	1 whole vanilla bean, halved and scraped
-	1\half{} teaspoons vanilla extract
+    2 cups whole milk
+    2 cups heavy cream
+    1 cup granulated sugar, divided
+    Pinch of salt
+    5 large egg yolks
+    \columnbreak
+    \ingredients[For Chocolate]
+    \third{} cup cocoa powder
+    1 teaspoon vanilla extract
+    Shake of instant coffee powder (optional)
+    \ingredients[For Vanilla]
+    1 whole vanilla bean, halved and scraped
+    1\half{} teaspoons vanilla extract
 \end{ingreds}
 
 \begin{method}[If applicable, freeze ice cream maker parts over night before beginning]
-	In a saucepan over medium heat, whisk together the milk, cream, \half{} cup sugar, and salt. If making vanilla, add scrapped vanilla and pod. Bring the mixture to around \temp{190} or just before boiling.
+    In a saucepan over medium heat, whisk together the milk, cream, \half{} cup sugar, and salt. If making vanilla, add scrapped vanilla and pod. Bring the mixture to around \temp{190} or just before boiling.
 
-	While mixture is heating, combine yolks and remaining sugar in a medium bowl. Beat until mixture is pale and thick.
+    While mixture is heating, combine yolks and remaining sugar in a medium bowl. Beat until mixture is pale and thick.
 
-	Once mixture is heated, whisk about \third{} of the hot mixture into the yolks and sugar. Do this slowly, whisking constantly. Add another \third{} of the mixture, then return the combined mixture to the saucepan.
+    Once mixture is heated, whisk about \third{} of the hot mixture into the yolks and sugar. Do this slowly, whisking constantly. Add another \third{} of the mixture, then return the combined mixture to the saucepan.
 
-	Stir the mixture constantly over low heat until it thickens slightly and coats the back of a wooden spoon. Do not let this mixture boil (target temperature is about \temp{175}), it should only take a couple minutes.
+    Stir the mixture constantly over low heat until it thickens slightly and coats the back of a wooden spoon. Do not let this mixture boil (target temperature is about \temp{175}), it should only take a couple minutes.
 
-	Remove from heat. Add cocoa and coffee powder if making chocolate. Pour the mixture through a fine mesh strainer into a heatproof container with a lid. Stir in vanilla extract. Cover and refrigerate \textit{at least} 3 hours, but preferably overnight.
+    Remove from heat. Add cocoa and coffee powder if making chocolate. Pour the mixture through a fine mesh strainer into a heatproof container with a lid. Stir in vanilla extract. Cover and refrigerate \textit{at least} 3 hours, but preferably overnight.
 
-	Pour the chilled mixture into an on ice cream maker. Let mix until thickened, around 20 minutes. The ice cream will have a soft, creamy texture. Consume immediately, or if a firmer texture is desired, place into an airtight container and freeze for 2 hours.
+    Pour the chilled mixture into an on ice cream maker. Let mix until thickened, around 20 minutes. The ice cream will have a soft, creamy texture. Consume immediately, or if a firmer texture is desired, place into an airtight container and freeze for 2 hours.
 \end{method}
 
 \recipe{Olivia's Pumpkin Pie}
